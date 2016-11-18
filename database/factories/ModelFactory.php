@@ -44,7 +44,7 @@ $factory->define(App\Tag::class, function (Faker\Generator $faker) {
     ];
 
     return [
-        'name' => $faker->randomElement($tags),
+        'name' => $faker->unique()->randomElement($tags),
     ];
 });
 
