@@ -5,10 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Zero的胡言乱语</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <!--<link href="https://fonts.useso.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">-->
 
         <!-- Styles -->
         <style>
@@ -27,7 +27,6 @@
 
             .flex-center {
                 align-items: center;
-                display: flex;
                 justify-content: center;
             }
 
@@ -41,14 +40,35 @@
                 top: 18px;
             }
 
+            .header {
+                text-align: center;
+                border-bottom: 1px solid #00b0cc;
+                margin: 3.5% auto 0;
+                padding-bottom: 1%;
+            }
             .content {
                 text-align: center;
             }
-
             .title {
+                font-family: cursive, Arial,  Helvetica, sans-serif, "宋体";
                 font-size: 84px;
             }
+            .subtitle {
+                font-family: cursive, Arial, Helvetica, sans-serif, "宋体";
+                font-size: 32px;
+            }
 
+            .navi > a{
+                font-family: cursive, Arial, Helvetica, sans-serif, "宋体";
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+                
+            }
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -77,18 +97,21 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <div class="header">
+                <div class="title">
+                    Zero的胡言乱语
                 </div>
+                <div class="subtitle m-b-md">
+                    recoding, learning
+                </div>
+                <div class="navi">
+                    <a href="http://www.weibo.com/u/2681234077/">weibo</a>
+                    <a href="mailto:admin@drakframe.com">E-Mail</a>
+                    <a href="https://github.com/laravel/laravel">Laravel</a>
+                </div>
+            </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <div class="content">
             </div>
         </div>
     </body>
