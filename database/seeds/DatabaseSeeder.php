@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         factory(App\Post::class)->times(10)->create();
         factory(App\Tag::class)->times(5)->create();
         factory(App\Comment::class)->times(20)->create();
+        
     }
 }

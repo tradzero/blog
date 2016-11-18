@@ -51,6 +51,7 @@ $factory->define(App\Tag::class, function (Faker\Generator $faker) {
 $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     return [
         'user_id' => rand(0, 6),
+        'post_id' => rand(1, 10),
         'comment' => $faker->sentence(),
         'like'    => rand(1, 10),
         'unlike'  => rand(0, 6)

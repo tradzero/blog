@@ -18,7 +18,7 @@ class CreateTableComments extends Migration
             $table->integer('user_id')->comment('外键-用户id');
             $table->integer('post_id')->comment('外键-文章id');
             $table->string('comment')->comment('评论');
-            $table->boolean('is_deleted')->comment('该评论是否被删除');
+            $table->boolean('is_deleted')->default(0)->comment('该评论是否被删除');
             $table->integer('like')->comment('点赞数');
             $table->integer('unlike')->comment('踩数');
             $table->timestamps();
