@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->comment('密码');
             $table->boolean('sex')->comment('性别');
             $table->string('mail')->comment('邮箱');
-            $table->tinyInteger('role')->comment('用户权限');
+            $table->tinyInteger('role')->comment('用户权限 0 admin, 1 授权用户, 2 游客');
             $table->boolean('is_banned')->comment('是否被禁用');
             $table->rememberToken();
             $table->timestamps();

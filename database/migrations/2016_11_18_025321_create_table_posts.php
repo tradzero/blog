@@ -17,11 +17,11 @@ class CreateTablePosts extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->comment('外键-用户id');
             $table->string('title')->comment('文章标题');
-            $table->string('content')->comment('文章正文');
+            $table->text('content')->comment('文章正文');
             $table->boolean('is_deleted')->comment('是否被删除');
             $table->integer('like')->unsign()->comment('点赞数');
             $table->integer('unlike')->unsign()->comment('踩数量');
-            $table->tinyInteger('visible')->comment('文章可见性');
+            $table->tinyInteger('visible')->comment('文章可见性 0 所有人可见 1 认证用户可见 2 隐藏');
             $table->timestamps();
         });
     }
