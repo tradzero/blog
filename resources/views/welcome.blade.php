@@ -48,6 +48,9 @@
             }
             .content {
                 text-align: center;
+                border-bottom: 1px solid #00b0cc;
+                margin: 3.5% auto 0;
+                padding-bottom: 1%;
             }
             .title {
                 font-family: cursive, Arial,  Helvetica, sans-serif, "宋体";
@@ -56,6 +59,12 @@
             .subtitle {
                 font-family: cursive, Arial, Helvetica, sans-serif, "宋体";
                 font-size: 32px;
+            }
+
+            .content-title > a{
+                font-size: 20px;
+                text-decoration: none;
+                color: #636b6f;
             }
 
             .navi > a{
@@ -111,8 +120,12 @@
                 </div>
             </div>
 
-            <div class="content">
-            </div>
+            @foreach($indexPosts as $post)
+                <div class="content">
+                    <div class="content-title m-b-md"><a href="/post/{{$post->id}}">{{ $post->title }}</a></div>
+                    <div>{{ $post->content }}</div>
+                </div>
+            @endforeach
         </div>
     </body>
 </html>

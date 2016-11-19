@@ -15,4 +15,9 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function scopeExist()
+    {
+        return $this->where('is_deleted', 0);
+    }
 }
