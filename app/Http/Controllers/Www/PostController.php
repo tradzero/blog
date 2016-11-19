@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $indexPosts = Post::exist()->orderBy('created_at', 'asc')->paginate(5);
+        $indexPosts = Post::exist()->orderBy('created_at', 'desc')->paginate(5);
         return view('welcome', compact('indexPosts'));
     }
 

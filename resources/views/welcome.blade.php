@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <script src="https://use.fontawesome.com/4e5ef8f80f.js"></script>
         <title>Zero的胡言乱语</title>
 
         <!-- Fonts -->
         <!--<link href="https://fonts.useso.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">-->
-
+        <link href="/css/app.css" rel="stylesheet">
         <!-- Styles -->
         <style>
             html, body {
@@ -47,8 +47,8 @@
                 padding-bottom: 1%;
             }
             .content {
-                text-align: center;
                 border-bottom: 1px solid #00b0cc;
+                text-align: center;
                 margin: 3.5% auto 0;
                 padding-bottom: 1%;
             }
@@ -76,7 +76,6 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
-                
             }
             .links > a {
                 color: #636b6f;
@@ -86,6 +85,11 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+            }
+
+            .paginator {
+                text-align: center;
+                margin: 3.5% auto 0;
             }
 
             .m-b-md {
@@ -115,7 +119,7 @@
                 </div>
                 <div class="navi">
                     <a href="http://www.weibo.com/u/2681234077/">weibo</a>
-                    <a href="mailto:admin@drakframe.com">E-Mail</a>
+                    <a href="mailto:admin@drakframe.com">E-MAIL</a>
                     <a href="https://github.com/laravel/laravel">Laravel</a>
                 </div>
             </div>
@@ -124,8 +128,18 @@
                 <div class="content">
                     <div class="content-title m-b-md"><a href="/post/{{$post->id}}">{{ $post->title }}</a></div>
                     <div>{{ $post->content }}</div>
+                    <p>
+                        {{ $post->created_at }}
+                        发表于 {{ (new Carbon($post->created_at))->diffForHumans() }}
+                         <a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a>
+                         <i class="fa fa-thumbs-o-up" aria-hidden="true">{{ $post->like }}</i> 
+                         <i class="fa fa-thumbs-o-down" aria-hidden="true">{{ $post->unlike }}</i> 
+                    </p>
                 </div>
             @endforeach
+            <div class="paginator">
+                {{ $indexPosts->links('vendor.pagination.default') }}
+            </div>
         </div>
     </body>
 </html>
