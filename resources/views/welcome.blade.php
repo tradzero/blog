@@ -40,7 +40,10 @@
                 right: 10px;
                 top: 18px;
             }
-
+            .article {
+                width: 92.5%;
+                margin: 0 auto;
+            }
             .header {
                 text-align: center;
                 border-bottom: 1px solid #00b0cc;
@@ -48,15 +51,18 @@
                 padding-bottom: 1%;
             }
             .content {
-                /*border-bottom: 1px solid #00b0cc;*/
                 text-align: center;
                 margin: 3.5% auto 0;
-                padding-bottom: 1%;
+                /*padding-bottom: 1%;*/
             }
             .article-footer {
                 padding-bottom: .5%;
                 border-bottom: 1px solid #00b0cc;
-                margin: 0 auto;
+                margin: 1% auto;
+            }
+            .article-footer p > span{
+                display: inline-block;
+                margin-right: 30px;
             }
             .title {
                 font-family: cursive, Arial,  Helvetica, sans-serif, "宋体";
@@ -131,21 +137,26 @@
             </div>
 
             @foreach($indexPosts as $post)
-                <div class="content">
+            <div class="article">
+                 <div class="content">
                     <div class="content-title m-b-md"><a href="/post/{{$post->id}}">{{ $post->title }}</a></div>
                     <div>{{ $post->content }}</div>
                 </div>
                 <div class="article-footer">
                     <p>
-                         <span>{{ $post->created_at }} 发表于 {{ (new Carbon($post->created_at))->diffForHumans() }}</span>
-                         <span><a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a></span>
                          <span>
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true" onclick="like($(this), {{ $post->id }}, 1)">{{ $post->like }}</i>
+                            <i class="fa fa-calendar"></i>
+                            {{ $post->created_at }} 发表于 {{ (new Carbon($post->created_at))->diffForHumans() }}
+                        </span>
+                         <span><i class="fa fa-user"></i> <a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a></span>
+                         <span>
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true" onclick="like($(this), {{ $post->id }}, 1)">{{ $post->like }}</i> 
                             <i class="fa fa-thumbs-o-down" aria-hidden="true" onclick="like($(this), {{ $post->id }}, 0)">{{ $post->unlike }}</i>
                          </span>
                          
                     </p>
                 </div>
+            </div>
             @endforeach
             <div class="paginator">
                 {{ $indexPosts->links('vendor.pagination.default') }}
