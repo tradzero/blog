@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="https://use.fontawesome.com/4e5ef8f80f.js"></script>
         <title>Zero的胡言乱语</title>
 
         <!-- Fonts -->
-        <!--<link href="https://fonts.useso.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">-->
         <link href="/css/app.css" rel="stylesheet">
         <!-- Styles -->
+        <script src="/js/jquery-3.1.1.js"></script>
         <style>
             html, body {
                 background-color: #fff;
@@ -47,10 +48,15 @@
                 padding-bottom: 1%;
             }
             .content {
-                border-bottom: 1px solid #00b0cc;
+                /*border-bottom: 1px solid #00b0cc;*/
                 text-align: center;
                 margin: 3.5% auto 0;
                 padding-bottom: 1%;
+            }
+            .article-footer {
+                padding-bottom: .5%;
+                border-bottom: 1px solid #00b0cc;
+                margin: 0 auto;
             }
             .title {
                 font-family: cursive, Arial,  Helvetica, sans-serif, "宋体";
@@ -109,7 +115,7 @@
                     @endif
                 </div>
             @endif
-
+            
             <div class="header">
                 <div class="title">
                     Zero的胡言乱语
@@ -118,9 +124,9 @@
                     recoding, learning
                 </div>
                 <div class="navi">
-                    <a href="http://www.weibo.com/u/2681234077/">weibo</a>
-                    <a href="mailto:admin@drakframe.com">E-MAIL</a>
-                    <a href="https://github.com/laravel/laravel">Laravel</a>
+                    <a target="_blank" href="http://www.weibo.com/u/2681234077/">weibo</a>
+                    <a target="_blank" href="mailto:admin@drakframe.com">E-MAIL</a>
+                    <a target="_blank" href="https://laravel.com/">Laravel</a>
                 </div>
             </div>
 
@@ -128,12 +134,16 @@
                 <div class="content">
                     <div class="content-title m-b-md"><a href="/post/{{$post->id}}">{{ $post->title }}</a></div>
                     <div>{{ $post->content }}</div>
+                </div>
+                <div class="article-footer">
                     <p>
-                        {{ $post->created_at }}
-                        发表于 {{ (new Carbon($post->created_at))->diffForHumans() }}
-                         <a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a>
-                         <i class="fa fa-thumbs-o-up" aria-hidden="true">{{ $post->like }}</i> 
-                         <i class="fa fa-thumbs-o-down" aria-hidden="true">{{ $post->unlike }}</i> 
+                         <span>{{ $post->created_at }} 发表于 {{ (new Carbon($post->created_at))->diffForHumans() }}</span>
+                         <span><a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a></span>
+                         <span>
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true" onclick="like($(this), {{ $post->id }}, 1)">{{ $post->like }}</i>
+                            <i class="fa fa-thumbs-o-down" aria-hidden="true" onclick="like($(this), {{ $post->id }}, 0)">{{ $post->unlike }}</i>
+                         </span>
+                         
                     </p>
                 </div>
             @endforeach
@@ -141,5 +151,27 @@
                 {{ $indexPosts->links('vendor.pagination.default') }}
             </div>
         </div>
+        <script>
+            function like(obj ,id, value)
+            {
+                $.post({
+                    url: "/post/like/" + id,
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        type: value
+                    },
+                    success: function(data) {
+                        obj.text(value? data.like: data.unlike);
+                        if(data.result){
+                            alert(value? '点赞成功' : '踩成功');
+                        }
+                        else{
+                            alert('一个文章只能赞/踩一次');
+                        }
+                    },
+                    dataType: "json"
+                });
+            }
+        </script>
     </body>
 </html>

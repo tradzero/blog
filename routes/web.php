@@ -16,3 +16,5 @@ Route::get('/', 'Www\PostController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::post('/post/like/{id}', 'Www\PostController@like');
