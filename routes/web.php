@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'Www\PostController@index');
+Route::get('/post/{id}', 'Www\PostController@show');
 
 Auth::routes();
 

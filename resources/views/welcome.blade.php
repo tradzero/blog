@@ -12,116 +12,11 @@
         <link href="/css/app.css" rel="stylesheet">
         <!-- Styles -->
         <script src="/js/jquery-3.1.1.js"></script>
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-            .article {
-                width: 92.5%;
-                margin: 0 auto;
-            }
-            .header {
-                text-align: center;
-                border-bottom: 1px solid #00b0cc;
-                margin: 3.5% auto 0;
-                padding-bottom: 1%;
-            }
-            .content {
-                text-align: center;
-                margin: 3.5% auto 0;
-                /*padding-bottom: 1%;*/
-            }
-            .article-footer {
-                padding-bottom: .5%;
-                border-bottom: 1px solid #00b0cc;
-                margin: 1% auto;
-            }
-            .article-footer p > span{
-                display: inline-block;
-                margin-right: 30px;
-            }
-            .title {
-                font-family: cursive, Arial,  Helvetica, sans-serif, "宋体";
-                font-size: 84px;
-            }
-            .subtitle {
-                font-family: cursive, Arial, Helvetica, sans-serif, "宋体";
-                font-size: 32px;
-            }
-
-            .content-title > a{
-                font-size: 20px;
-                text-decoration: none;
-                color: #636b6f;
-            }
-
-            .navi > a{
-                font-family: cursive, Arial, Helvetica, sans-serif, "宋体";
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 20px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .paginator {
-                text-align: center;
-                margin: 3.5% auto 0;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link href="/css/front.css" rel="stylesheet">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-            
+            @include('component.loginbar')
             <div class="header">
                 <div class="title">
                     Zero的胡言乱语
