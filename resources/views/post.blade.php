@@ -37,6 +37,25 @@
                 {{ $post->content }}
             </div>
         </div>
+        <div class="about">
+            <p>本文标签：@foreach($post->tags as $tag){{ $tag->name }} @endforeach </p>
+            <p>本文作者：{{ $post->user->username }}</p>
+            <p>已有：{{ $post->like }} 点赞</p>
+            <p>已有：{{ $post->unlike }} 踩</p>
+        </div>
+        <div class="comments">
+            @foreach($post->comments as $comment)
+                <div class="comment">
+                    {{ $comment->comment }}
+                    <p>点赞：{{ $comment->like }} 踩：{{ $comment->unlike }} {{ $comment->created_at }} </p>
+                </div>
+            @endforeach
+            <form action="/post/{{ $post->id }}/comment" method="post">
+                {{ csrf_field() }}
+                <textarea name="" id="" cols="30" rows="10" placeholder="留下你的评论"></textarea>
+                <p><button type="submit">提交</button></p>
+            </form>
+        </div>
     </div>
 </body>
 </html>

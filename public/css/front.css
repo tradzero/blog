@@ -56,6 +56,7 @@ html, body {
 .postTitle {
     font-family: cursive, Arial,  Helvetica, sans-serif, "宋体";
     font-size: 53px;
+    margin-top: 8%;
 }
 .postInfo {
     font-size:15px;
