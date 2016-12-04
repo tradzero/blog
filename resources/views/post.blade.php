@@ -57,11 +57,11 @@
         <div class="comments text-center">
             <div class="comment panel panel-default" v-for="(comment, index) in post.comments">
                 <div class="panel-heading text-left">
-                    <span>
+                    <span :name="comment.id">
                         @{{ comment.user.nickname }} 评论：
                     </span>
                 </div>
-                <div class="panel-body">
+                <div  class="panel-body">
                     @{{ comment.comment }}
                 </div>
                 <div class="panel-footer text-left">
@@ -75,7 +75,7 @@
             <form action="/post/{{ $post->id }}/comment" method="post">
                 {{ csrf_field() }}
                 <textarea class="form-control" rows="10" placeholder="留下你的评论"></textarea>
-                <p class="text-left"><button style="margin-top: 1%" class="btn btn-primary btn-block" type="submit">提交</button></p>
+                <p class="text-left"><button @click.prevent="submit()" style="margin-top: 1%" class="btn btn-primary btn-block" type="submit">提交</button></p>
             </form>
         </div>
     </div>
@@ -112,6 +112,34 @@
                         }
                     },
                     dataType: "json",
+                });
+            },
+            submit: function() {
+                @if(Auth::check())
+                    var authStatus = true;
+                @else
+                    var authStatus = false;
+                @endif
+                var commentData = $('textarea').val();
+                var that = this;
+                if(!authStatus){
+                    alert('只有登陆用户才能发表评论');
+                    return ;
+                }
+                $.ajax({
+                    url: '/comment/' + this.post.id,
+                    method: 'post',
+                    data: {
+                        _token: this.token,
+                        content: commentData
+                    },
+                    success: function(data){
+                        if(data.result){
+                            alert('评论成功');
+                            location.href="/post/" + that.post.id + "/#" + data.comment.id;
+                        }
+                    }
+
                 });
             },
         },

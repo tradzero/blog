@@ -14,7 +14,7 @@ class PostController extends Controller
         $indexPosts = Post::exist()->orderBy('created_at', 'desc')->paginate(5);
         return view('welcome', compact('indexPosts'));
     }
-
+    
     public function like(Request $request, $id)
     {
         $resultData = Collect(['result' => false]);
@@ -43,5 +43,5 @@ class PostController extends Controller
         $post = Post::exist()->with('tags', 'user', 'comments.user')->findOrFail($id);
         return view('post', compact('post'));
     }
-
+    
 }

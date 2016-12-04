@@ -15,4 +15,9 @@ class Comment extends Model
     {
         return $this->where('is_deleted', 0);
     }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }
