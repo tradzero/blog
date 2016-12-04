@@ -10,4 +10,9 @@ class Comment extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function scopeExist()
+    {
+        return $this->where('is_deleted', 0);
+    }
 }

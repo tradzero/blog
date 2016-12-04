@@ -40,7 +40,7 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::exist()->with('tags', 'user', 'comments')->findOrFail($id);
+        $post = Post::exist()->with('tags', 'user', 'comments.user')->findOrFail($id);
         return view('post', compact('post'));
     }
 

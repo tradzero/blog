@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <script src="https://use.fontawesome.com/4e5ef8f80f.js"></script>
+        <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <title>Zero的胡言乱语</title>
 
         <!-- Fonts -->
@@ -45,8 +45,8 @@
                         </span>
                          <span><i class="fa fa-user"></i> <a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a></span>
                          <span>
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true" onclick="like($(this), {{ $post->id }}, 1)">{{ $post->like }}</i> 
-                            <i class="fa fa-thumbs-o-down" aria-hidden="true" onclick="like($(this), {{ $post->id }}, 0)">{{ $post->unlike }}</i>
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true">{{ $post->like }}</i> 
+                            <i class="fa fa-thumbs-o-down" aria-hidden="true">{{ $post->unlike }}</i>
                          </span>
                          
                     </p>
@@ -57,27 +57,5 @@
                 {{ $indexPosts->links('vendor.pagination.default') }}
             </div>
         </div>
-        <script>
-            function like(obj ,id, value)
-            {
-                $.post({
-                    url: "/post/like/" + id,
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content'),
-                        type: value
-                    },
-                    success: function(data) {
-                        obj.text(value? data.like: data.unlike);
-                        if(data.result){
-                            alert(value? '点赞成功' : '踩成功');
-                        }
-                        else{
-                            alert('一个文章只能赞/踩一次');
-                        }
-                    },
-                    dataType: "json"
-                });
-            }
-        </script>
     </body>
 </html>

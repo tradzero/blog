@@ -18,4 +18,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::post('/post/like/{id}', 'Www\PostController@like');
+Route::patch('/post/{id}/like', 'Www\PostController@like');
+Route::patch('/comment/{id}/like', 'Www\CommentController@like');;

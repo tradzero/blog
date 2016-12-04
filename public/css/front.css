@@ -37,7 +37,7 @@ html, body {
 
 .article {
     width: 92.5%;
-    margin: 0 auto;
+    margin: 0 auto 10%;
 }
 .header {
     text-align: center;
