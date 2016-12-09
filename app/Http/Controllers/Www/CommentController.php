@@ -15,18 +15,9 @@ class CommentController extends Controller
     {
         $resultData = collect(['result' => false]);
         $comment = Comment::exist()->findOrFail($id);
-        $type = (boolean)$request->type;
-        if(!Session('comment:' . $id)){
-            if($type){
-                // 点赞
-                $comment->increment('unlike');
-            }else{
-                // 踩
-                $comment->increment('like');
-            }
-            Session(['comment:' . $id => true]);
-            $resultData['result'] = true;
-        }
+        $type = (boolean)$request->type ? 'unlike' : 'like';
+
+        $resultData['result'] = $this->guestLike($comment, $type, 'comment', $id);
 
         $resultData['like'] = $comment->like;
         $resultData['unlike'] = $comment->unlike;

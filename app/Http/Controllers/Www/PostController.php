@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $indexPosts = Post::exist()->orderBy('created_at', 'desc')->paginate(5);
+        $indexPosts = Post::exist()->with('user')->orderBy('created_at', 'desc')->paginate(5);
         return view('welcome', compact('indexPosts'));
     }
     
@@ -19,19 +19,9 @@ class PostController extends Controller
     {
         $resultData = Collect(['result' => false]);
         $post = Post::exist()->findOrFail($id);
-        $type = (boolean)$request->type;
+        $type = (boolean)$request->type ? 'unlike' : 'like';
         
-        if(!Session('post:' . $id)){
-            if($type){
-                // 点赞
-                $post->increment('like');
-            }else{
-                // 踩
-                $post->increment('unlike');
-            }
-            Session(['post:' . $id => true]);
-            $resultData['result'] = true;
-        }
+        $resultData['result'] = $this->guestLike($post, $type, 'post', $id);
 
         $resultData['like'] = $post->like;
         $resultData['unlike'] = $post->unlike;

@@ -22,5 +22,6 @@ Route::group(['middleware' => ['auth']], function() {
     // parameter id 文章id
     Route::post('/comment/{id}', 'Www\CommentController@store');
 });
+Route::get('/tag/{id}', 'Www\TagController@show');
 Route::patch('/post/{id}/like', 'Www\PostController@like');
-Route::patch('/comment/{id}/like', 'Www\CommentController@like');;
+Route::patch('/comment/{id}/like', 'Www\CommentController@like');

@@ -50,8 +50,8 @@
         <blockquote>
             <p class="small">本文标签：@foreach($post->tags as $tag) <a href="/tag/{{ $tag->id }}">{{ $tag->name }}</a>  @endforeach </p>
             <p class="small">本文作者：{{ $post->user->username }}</p>
-            <p class="small">已有：{{ $post->like }} 人点赞</p>
-            <p class="small">已有：{{ $post->unlike }} 人点踩</p>
+            <p class="small">已有：@{{ post.like }} 人点赞 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
+            <p class="small">已有：@{{ post.unlike }} 人点踩 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
         </blockquote>
         <!-- comments -->
         <div class="comments text-center">
@@ -70,7 +70,7 @@
                     <span style="margin-right: 3%">评论于：@{{ comment.created_at }}</span>
                 </div>
             </div>
-
+            
             <!-- write comments -->
             <form action="/post/{{ $post->id }}/comment" method="post">
                 {{ csrf_field() }}
@@ -86,6 +86,8 @@
         data: {
             post: {
                 id: {{ $post->id }},
+                like: {{ $post->like }},
+                unlike: {{ $post->unlike }}, 
                 comments: {!! $post->comments->toJson() !!},
             },
             token: '{{ csrf_token() }}',
@@ -96,7 +98,7 @@
                 var router = method ? 'like' : 'unlike'; 
                 var that = this;
                 $.ajax({
-                    url: '/comment/' + commentId + '/' + router,
+                    url: '/comment/' + commentId + '/' + 'like',
                     method: 'post',
                     data: {
                         _token: this.token,
@@ -107,6 +109,29 @@
                         if(data.result){
                             that.post.comments[index].like = data.like;
                             that.post.comments[index].unlike = data.unlike;
+                        }else{
+                            alert('一个评论只能点赞、踩一次哦！');
+                        }
+                    },
+                    dataType: "json",
+                });
+            },
+            postLike: function(index, method) {
+                var postId = this.post.id;
+                var router = method ? 'like' : 'unlike'; 
+                var that = this;
+                $.ajax({
+                    url: '/post/' + postId + '/' + 'like',
+                    method: 'post',
+                    data: {
+                        _token: this.token,
+                        _method: 'patch',
+                        type: method,
+                    },
+                    success: function(data){
+                        if(data.result){
+                            that.post.like = data.like;
+                            that.post.unlike = data.unlike;
                         }else{
                             alert('一个评论只能点赞、踩一次哦！');
                         }
