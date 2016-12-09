@@ -27,17 +27,15 @@ class CommentController extends Controller
     public function store(Request $request, $id)
     {
         $post = Post::exist()->findOrFail($id);
-
         $content = $request->content;
         $resultData = collect(['result' => false]);
         if(!$content || trim($content) == ''){
             return $resultData;
         }
         $comment = new Comment();
-        $comment->post_id = $post->id;
         $comment->user_id = Auth::user()->id;
         $comment->comment = $content;
-        $comment->save();
+        $post->comments()->save($comment);
         $resultData['result'] = true;
         $resultData['comment'] = $comment;
         return response()->json($resultData);
