@@ -13,7 +13,26 @@ require('laravel-elixir-vue-2');
  |
  */
 
+// elixir((mix) => {
+//     mix.sass('app.scss')
+//        .webpack('app.js');
+// });
 elixir((mix) => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+    /*
+      bootstrap
+    */
+    mix.copy('vendor/almasaeed2010/adminlte/bootstrap/css/bootstrap.min.css',
+                     'public/bootstrap/css/bootstrap.min.css');
+    mix.copy('vendor/almasaeed2010/adminlte/bootstrap/js/bootstrap.min.js',
+                     'public/bootstrap/js/bootstrap.min.js');
+    /*
+      css/js
+    */
+    mix.copy('vendor/almasaeed2010/adminlte/dist/css', 'public/adminlte/css');
+    mix.copy('vendor/almasaeed2010/adminlte/dist/js/app.min.js', 'public/adminlte/js');
+    /*
+      jquery for compatibility
+    */
+    mix.copy('vendor/almasaeed2010/adminlte/plugins/jQuery/jquery-2.2.3.min.js',
+                     'public/adminlte/jQuery/jquery-2.2.3.min.js');
 });

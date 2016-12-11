@@ -13,11 +13,8 @@
 
 Route::get('/', 'Www\PostController@index');
 Route::get('/post/{id}', 'Www\PostController@show');
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index');
-
 Route::group(['middleware' => ['auth']], function() {
     // parameter id 文章id
     Route::post('/comment/{id}', 'Www\CommentController@store');
@@ -25,3 +22,7 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('/tag/{id}', 'Www\TagController@show');
 Route::patch('/post/{id}/like', 'Www\PostController@like');
 Route::patch('/comment/{id}/like', 'Www\CommentController@like');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
+    Route::get('/', 'Admin\HomeController@index');
+});
