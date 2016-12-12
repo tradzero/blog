@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Post;
-
+use App\Events\ViewEvent;
 class PostController extends Controller
 {
     public function index()
@@ -31,6 +31,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::exist()->with('tags', 'user', 'comments.user')->findOrFail($id);
+
+        event(new ViewEvent($post));
+        
         return view('post', compact('post'));
     }
     
