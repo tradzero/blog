@@ -10,7 +10,8 @@
   <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
   <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
-
+  
+  <script src="/adminlte/jQuery/jquery-2.2.3.min.js"></script>
   <!--[if lt IE 9]>
   <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv-printshiv.js"></script>
   <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -44,7 +45,6 @@
   @include('admin.component.footer')
 </div>
 
-<script src="/adminlte/jQuery/jquery-2.2.3.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/adminlte/js/app.min.js"></script>
 </body>
