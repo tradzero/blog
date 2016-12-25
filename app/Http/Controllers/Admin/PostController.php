@@ -10,6 +10,7 @@ class PostController extends Controller
     public function create()
     {
         // todo return create view
+        return view('admin.posts.create');
     }
 
 }

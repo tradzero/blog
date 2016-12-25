@@ -10,14 +10,17 @@
         "barryvdh/laravel-debugbar": "^2.3",
         "predis/predis": "^1.1",
         "doctrine/dbal": "^2.5",
-        "almasaeed2010/adminlte": "~2.0"
+        "almasaeed2010/adminlte": "~2.0",
+        "laracasts/flash": "^2.0",
+        "qiniu/php-sdk": "^7.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "yuanchao/laravel-5-markdown-editor": "dev-master"
     },
     "autoload": {
         "classmap": [
