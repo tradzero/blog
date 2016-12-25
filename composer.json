@@ -12,7 +12,8 @@
         "doctrine/dbal": "^2.5",
         "almasaeed2010/adminlte": "~2.0",
         "laracasts/flash": "^2.0",
-        "qiniu/php-sdk": "^7.1"
+        "qiniu/php-sdk": "^7.1",
+        "erusev/parsedown": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

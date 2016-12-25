@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>{{ $post->title }}</title>
+        <title>{{ $post['title'] }}</title>
         <!-- Fonts -->
         <link href="/css/app.css" rel="stylesheet">
         <link href="/css/front.css" rel="stylesheet">
@@ -25,33 +25,33 @@
         </div>
         <!-- title -->
         <div class="header">
-            <div class="postTitle">{{ $post->title }}</div>
+            <div class="postTitle">{{ $post['title'] }}</div>
         </div>
         <!-- content -->
         <div class="article">
             <div class="postInfo center">
                 <!-- content's tag -->
                 <div class="postTags">
-                    @foreach($post->tags as $tag)
-                        <a href="/tag/{{ $tag->id }}"><span class="label label-primary">{{ $tag->name }}</span></a>
+                    @foreach($post['tags'] as $tag)
+                        <a href="/tag/{{ $tag['id'] }}"><span class="label label-primary">{{ $tag['name'] }}</span></a>
                     @endforeach
                 </div>
                 <!-- post date -->
                 <div class="postDate">
-                    {{ $post->created_at }}
+                    {{ $post['created_at'] }}
                 </div>
             </div>
             <!-- content text -->
             <div class="content postContent">
-                {{ $post->content }}
+                {!! $post['content'] !!}
             </div>
         </div>
         <!-- post info-->
         <blockquote>
-            <p class="small">本文标签：@foreach($post->tags as $tag) <a href="/tag/{{ $tag->id }}">{{ $tag->name }}</a>  @endforeach </p>
-            <p class="small">本文作者：{{ $post->user->username }}</p>
-            <p class="small">已有：@{{ post.like }} 人点赞 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
-            <p class="small">已有：@{{ post.unlike }} 人点踩 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
+            <p class="small">本文标签：@foreach($post['tags'] as $tag) <a href="/tag/{{ $tag['id'] }}">{{ $tag['name'] }}</a>  @endforeach </p>
+            <p class="small">本文作者：{{ $post['user']['username'] }}</p>
+            <p class="small">已有：@{{ post['like'] }} 人点赞 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
+            <p class="small">已有：@{{ post['unlike'] }} 人点踩 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
         </blockquote>
         <!-- comments -->
         <div class="comments text-center">
@@ -72,7 +72,7 @@
             </div>
             
             <!-- write comments -->
-            <form action="/post/{{ $post->id }}/comment" method="post">
+            <form action="/post/{{ $post['id'] }}/comment" method="post">
                 {{ csrf_field() }}
                 <textarea class="form-control" rows="10" placeholder="留下你的评论"></textarea>
                 <p class="text-left"><button @click.prevent="submit()" style="margin-top: 1%" class="btn btn-primary btn-block" type="submit">提交</button></p>
@@ -85,10 +85,10 @@
         el: "#app",
         data: {
             post: {
-                id: {{ $post->id }},
-                like: {{ $post->like }},
-                unlike: {{ $post->unlike }}, 
-                comments: {!! $post->comments->toJson() !!},
+                id: {{ $post['id'] }},
+                like: {{ $post['like'] }},
+                unlike: {{ $post['unlike'] }}, 
+                comments: {!!  json_encode($post['comments']) !!},
             },
             token: '{{ csrf_token() }}',
         },

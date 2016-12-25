@@ -15,15 +15,15 @@ class ViewEvent
 {
     use InteractsWithSockets, SerializesModels;
 
-    public $post;
+    public $postId;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct($postId)
     {
-        $this->post = $post;
+        $this->postId = $postId;
     }
 
     /**
