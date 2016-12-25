@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Carbon;
+use Qiniu\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(\Faker\Generator::class, function () {
             return \Faker\Factory::create('zh_CN');
+        });
+
+        $this->app->bind('qiniuAuth', function ($app) {
+            return new Auth(config('services.qiniu.appkey'), config('services.qiniu.secretkey'));
         });
     }
 }

@@ -35,4 +35,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'qiniu' => [
+        'appkey' => env('QINIU_AK', ''),
+        'secretkey' => env('QINIU_SK', ''),
+        'bucket' => env('QINIU_BUCKET', ''),
+        'url' => env('QINIU_URL', ''),
+    ],
+
 ];

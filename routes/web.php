@@ -26,5 +26,5 @@ Route::patch('/comment/{id}/like', 'Www\CommentController@like');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
     Route::get('/', 'Admin\HomeController@index');
     Route::resource('posts', 'Admin\PostController');
-    // Route::post('/upload', '');
+    Route::post('/upload', 'Admin\UploadController@qiniuUpload');
 });

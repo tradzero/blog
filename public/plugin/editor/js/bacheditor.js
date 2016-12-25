@@ -1576,7 +1576,7 @@ $(document).ready(function () {\n\
         <span class="text-muted">图片体积不得大于 4 MB</span>\
         <br>\
         <div class="widget-upload form-group">\
-        <input type="file" id="editorUpload" name="image" class="widget-upload__file">\
+        <input type="file" id="editorUpload" name="file" class="widget-upload__file">\
         <div class="col-sm-8">\
         <input type="text" id="fileName" class="form-control col-sm-10 widget-upload__text" placeholder="拖动图片到这里" readonly />\
         </div>\
