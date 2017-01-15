@@ -10,6 +10,9 @@ class PostObserver
     {
         $post->load('tags', 'user', 'comments.user');
         $post->content = app('parsedown')->text($post['content']);
+        // TODO remove hardcode
+        $post->like = 0;
+        $post->unlike = 0;
         $postCacher = $post->toArray();
         Cache::tags(['posts', 'comments', 'user'])->put('post:' . $post['id'], $postCacher, 60*24*7);
     }
