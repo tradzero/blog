@@ -31,7 +31,7 @@
         ajaxTopicSearchUrl = null;
         @endif
 
-        var myEditor = new Editor(url,ajaxTopicSearchUrl);
+        myEditor = new Editor(url,ajaxTopicSearchUrl);
         myEditor.render('#myEditor');
     });
 </script>

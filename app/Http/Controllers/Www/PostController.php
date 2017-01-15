@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Www;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cache;
+use Log;
 use App\Post;
 use App\Events\ViewEvent;
 
@@ -33,6 +34,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Cache::tags(['posts', 'comments', 'user'])->remember('post:' . $id, 60*24*1, function () use($id){
+            Log::debug('cache failed, try to find post ' . $id);
             return $this->postCache($id);
         });
         

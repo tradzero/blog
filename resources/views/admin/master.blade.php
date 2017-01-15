@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
   <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
   
+  @yield('style')
   <script src="/adminlte/jQuery/jquery-2.2.3.min.js"></script>
   <!--[if lt IE 9]>
   <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv-printshiv.js"></script>
@@ -47,5 +48,6 @@
 
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/adminlte/js/app.min.js"></script>
+@yield('script')
 </body>
 </html>

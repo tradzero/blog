@@ -49,7 +49,7 @@
                             <i class="fa fa-thumbs-o-down" aria-hidden="true">{{ $post->unlike }}</i>
                          </span>
                          <span><i class="fa fa-eye" aria-hidden="true"></i>已有{{ null != Redis::zscore('postViewCount', 'post:' . $post->id) ?
-                                                                                  Redis::zscore('postViewCount', 'post:' . $post->id) : '0' }}人查看</span>
+                                                                                  Redis::zscore('postViewCount', 'post:' . $post->id) : '0' }}次查看</span>
                     </p>
                 </div>
             </div>
