@@ -17,6 +17,7 @@ class PostRequest extends FormRequest
             'title' => 'required|max:100',
             'content' => 'required',
             'visible' => 'required|between:0, 2',
+            'tag' => 'array',
         ];
     }
 

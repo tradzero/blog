@@ -9,6 +9,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ROLE_ADMIN = 0; // 管理员
+    const ROLE_USER = 1; // 认证用户
+    const ROLE_VISITOR = 2; // 游客
+    
     protected $fillable = [
         'nickname', 'username', 'sex', 'password', 'mail'
     ];

@@ -29,3 +29,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
     Route::resource('posts', 'Admin\PostController');
     Route::post('/upload', 'Admin\UploadController@qiniuUpload');
 });
+
+Route::group(['prefix' => 'api', 'middleware' => ['auth', 'admin'], 'namespace' => 'Api'], function() {
+    Route::resource('tag', 'TagController');
+});

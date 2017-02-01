@@ -1,8 +1,11 @@
 @extends('admin.master')
 @section('title')撰写新文章@endsection
 @section('content')
+@section('style')
+    <link href="//cdn.bootcss.com/bootstrap-sweetalert/1.0.1/sweetalert.min.css" rel="stylesheet">
+@endsection
 @include('editor::head')
-    <div class="container-fluid">
+    <div class="container-fluid" id="app" v-cloak>
         <div class="row">
             <!-- main -->
             <form action="{{ URL::route('posts.store') }}" method="POST">
@@ -45,11 +48,61 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-3">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">分类</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="from-group">
+                                <label class="form-control" for="tag-select">选择分类</label>
+                            </div>
+                            <div class="form-group" id="tag-select">
+                                <div class="checkbox" v-for="tag in tags.tags">
+                                    <label>
+                                        <input type="checkbox" name="tags[]" :value="tag.id"> @{{ tag.name }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 @endsection
 
 @section('script')
-    
+    <script src="//cdn.bootcss.com/vue/2.1.10/vue.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+    <script>
+        Vue.config.devtools = true;
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                tags: [],
+            },
+            beforeCreate: function(){
+                $.ajax({
+                    url: '/api/tag',
+                    async: true,
+                    dataType: 'json',
+                    success: function(data){
+                        vm.tags = data;
+                    },
+                    error: function (){
+                        vm.serverError();
+                    },
+                });
+            },
+            methods: {
+                serverError: function () {
+                    swal("抱歉，服务器出了点错", 
+                    "抱歉，服务器出了点错, 请刷新后或稍后重试",
+                    "warning");
+                },
+            },
+        });
+    </script>
 @endsection

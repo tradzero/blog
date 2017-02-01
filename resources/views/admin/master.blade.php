@@ -10,7 +10,11 @@
   <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
   <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
-  
+  <style>
+    [v-cloak] {
+        display: none;
+    }
+  </style>
   @yield('style')
   <script src="/adminlte/jQuery/jquery-2.2.3.min.js"></script>
   <!--[if lt IE 9]>

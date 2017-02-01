@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Post;
+use App\Tag;
 use Auth;
 
 class PostController extends Controller
@@ -24,13 +25,17 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
+        $tagIds = $request->tags;
+        $tags = Tag::whereIn('id', $tagIds)->get();
+
         $post = new Post();
-        $parsedown = app('parsedown');
         $post->title = $request->title;
         $post->content = $request->content;
         $post->visible = $request->visible;
-
         Auth::user()->posts()->save($post);
+        if($tags){
+            $post->tags()->sync($tagIds);
+        }
         return redirect('/admin/posts');
     }
     
