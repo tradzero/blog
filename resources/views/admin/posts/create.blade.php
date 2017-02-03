@@ -1,9 +1,9 @@
 @extends('admin.master')
 @section('title')撰写新文章@endsection
-@section('content')
 @section('style')
     <link href="//cdn.bootcss.com/bootstrap-sweetalert/1.0.1/sweetalert.min.css" rel="stylesheet">
 @endsection
+@section('content')
 @include('editor::head')
     <div class="container-fluid" id="app" v-cloak>
         <div class="row">

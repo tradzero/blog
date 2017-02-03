@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
     Route::get('/', 'Admin\HomeController@index');
     Route::patch('posts/{id}/recovery', 'Admin\PostController@recovery')->name('posts.recovery');
     Route::resource('posts', 'Admin\PostController');
+
+    Route::resource('tags', 'Admin\TagController');
     Route::post('/upload', 'Admin\UploadController@qiniuUpload');
 });
 
