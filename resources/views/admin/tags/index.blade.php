@@ -29,11 +29,11 @@
                         <tbody>
                             @foreach($tags as $tag)
                                 <tr>
-                                    <th>{{ $tag->name }}</th>
-                                    <th>{{ $tag->posts_count }}</th>
-                                    <th>
+                                    <td>{{ $tag->name }}</td>
+                                    <td>{{ $tag->posts_count }}</td>
+                                    <td>
                                         <a href="{{ URL::route('tags.edit', $tag->id) }}" class="btn btn-primary">修改</a>
-                                    </th>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

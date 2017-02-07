@@ -36,15 +36,15 @@
                         <tbody>
                             @foreach($posts as $post)
                                 <tr>
-                                    <th>{{ $post->id }}</th>
-                                    <th><a href="{{ URL::route('posts.edit', $post->id) }}">{{ $post->title }}</a></th>
-                                    <th>{{ $post->like }}</th>
-                                    <th>{{ $post->unlike }}</th>
-                                    <th>{{ trans('post.visible:' . $post->visible) }}</th>
-                                    <th>{{ $post->is_deleted ? '是' : '否' }}</th>
-                                    <th>{{ $post->created_at->diffForHumans() }}</th>
-                                    <th>{{ $post->updated_at->diffForHumans() }}</th>
-                                    <th>
+                                    <td>{{ $post->id }}</td>
+                                    <td><a href="{{ URL::route('posts.edit', $post->id) }}">{{ $post->title }}</a></td>
+                                    <td>{{ $post->like }}</td>
+                                    <td>{{ $post->unlike }}</td>
+                                    <td>{{ trans('post.visible:' . $post->visible) }}</td>
+                                    <td>{{ $post->is_deleted ? '是' : '否' }}</td>
+                                    <td>{{ $post->created_at->diffForHumans() }}</td>
+                                    <td>{{ $post->updated_at->diffForHumans() }}</td>
+                                    <td>
                                         @if(!$post->is_deleted)
                                             <form action="{{ URL::route('posts.destroy', $post->id) }}" method="POST">
                                                 {{ csrf_field() }}
@@ -58,7 +58,7 @@
                                                 <button type="button" onclick="recoveryConfirm(this.parentNode)" class="btn btn-primary">恢复</button>
                                             </form>
                                         @endif
-                                    </th>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
