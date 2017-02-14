@@ -27,8 +27,8 @@ class AlterTableCommentSetDefault extends Migration
     public function down()
     {
         Schema::table('comments', function($table) {
-            $table->integer('like')->comment('点赞数');
-            $table->integer('unlike')->comment('踩数');
+            $table->integer('like')->comment('点赞数')->change();
+            $table->integer('unlike')->comment('踩数')->change();
         });
     }
 }
