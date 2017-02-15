@@ -10,6 +10,8 @@
   <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
   <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
+  <link href="/pace/css/pace.min.css" rel="stylesheet" />
+
   <style>
     [v-cloak] {
         display: none;
@@ -52,6 +54,7 @@
 
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/adminlte/js/app.min.js"></script>
+<script src="/pace/js/pace.min.js"></script>
 @yield('script')
 </body>
 </html>
