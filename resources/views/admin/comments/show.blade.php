@@ -48,6 +48,7 @@
     <script>
         function setVisibility(attribute, id)
         {
+            NProgress.start();
             var url = '/admin/comments/' + id + '/' + attribute;
             axios.post(url, null, {
                 header: {
