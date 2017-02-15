@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin.js"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA","file":"admin.js","sourcesContent":["$(function () {\r\n　　NProgress.start();\r\n　　$(window).load(function () {\r\n        NProgress.done();\r\n    });\r\n});\r\n"]}

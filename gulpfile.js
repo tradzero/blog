@@ -18,6 +18,10 @@ require('laravel-elixir-vue-2');
 //        .webpack('app.js');
 // });
 elixir((mix) => {
+    /*admin*/
+    mix.scripts([
+        'resources/assets/js/admin.js'
+    ], 'public/js/admin.js');
     /*
       bootstrap
     */
@@ -25,13 +29,6 @@ elixir((mix) => {
                      'public/bootstrap/css/bootstrap.min.css');
     mix.copy('vendor/almasaeed2010/adminlte/bootstrap/js/bootstrap.min.js',
                      'public/bootstrap/js/bootstrap.min.js');
-    /*
-      pace
-    */
-    mix.copy('vendor/almasaeed2010/adminlte/plugins/pace/pace.min.css',
-                      'public/pace/css/pace.min.css');
-    mix.copy('vendor/almasaeed2010/adminlte/plugins/pace/pace.min.js',
-                      'public/pace/js/pace.min.js');
 
     /*
       css/js
