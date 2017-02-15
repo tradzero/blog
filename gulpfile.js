@@ -18,7 +18,16 @@ require('laravel-elixir-vue-2');
 //        .webpack('app.js');
 // });
 elixir((mix) => {
-    /*admin*/
+    /*
+      NProgress
+    */
+    mix.scripts([
+        './node_modules/nprogress/nprogress.js'
+    ], 'public/nprogress/nprogress.js');
+    
+    /*
+      admin
+    */
     mix.scripts([
         'resources/assets/js/admin.js'
     ], 'public/js/admin.js');
