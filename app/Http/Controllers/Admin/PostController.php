@@ -33,7 +33,7 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->visible = $request->visible;
         Auth::user()->posts()->save($post);
-        if($tags){
+        if ($tags) {
             $post->tags()->sync($tagIds);
         }
         return redirect('/admin/posts');
@@ -72,5 +72,4 @@ class PostController extends Controller
         $post->save();
         return redirect('/admin/posts')->with('success', '恢复成功');
     }
-
 }

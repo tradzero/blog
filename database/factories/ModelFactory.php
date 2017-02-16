@@ -19,7 +19,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'password'       => bcrypt(123456),
         'sex'            => rand(0, 1),
         'mail'           => $faker->safeEmail,
-        'role'           => rand(1, 2), 
+        'role'           => rand(1, 2),
         'remember_token' => str_random(10),
     ];
 });
@@ -32,7 +32,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'content' => $faker->realText($maxNbChars = 500),
         'like'    => rand(5, 50),
         'unlike'  => rand(1, 20),
-        'visible' => rand(0,2),
+        'visible' => rand(0, 2),
         'created_at'     => $published,
         'updated_at'     => $published,
     ];
@@ -40,7 +40,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Tag::class, function (Faker\Generator $faker) {
     $tags = [
-        '开发', '运维' , '前端', '后端', '生活', '琐事', '吐槽', '感情' 
+        '开发', '运维' , '前端', '后端', '生活', '琐事', '吐槽', '感情'
     ];
 
     return [

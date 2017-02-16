@@ -13,7 +13,7 @@ class AlterTablePostSetLikeDefault extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function($table) {
+        Schema::table('posts', function ($table) {
             $table->integer('like')->unsign()->comment('点赞数')->default(0)->change();
             $table->integer('unlike')->unsign()->comment('踩数量')->default(0)->change();
         });
@@ -26,7 +26,7 @@ class AlterTablePostSetLikeDefault extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function($table) {
+        Schema::table('posts', function ($table) {
             $table->integer('like')->unsign()->comment('点赞数')->change();
             $table->integer('unlike')->unsign()->comment('踩数量')->change();
         });

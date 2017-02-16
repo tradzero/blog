@@ -15,11 +15,11 @@ class UploadController extends Controller
         $uploadMgr = new UploadManager();
         list($ret, $err) = $uploadMgr->putFile($token, null, $request->file('file'));
 
-        $url = config('services.qiniu.url') . $ret['key']; 
+        $url = config('services.qiniu.url') . $ret['key'];
 
-        if($err !== null){
+        if ($err !== null) {
             return response()->json(['status' => 1, 'message' => $err], 400);
-        }else{
+        } else {
             return response()->json(['status' => 0, 'message' => 'success', 'url' => $url], 200);
         }
     }

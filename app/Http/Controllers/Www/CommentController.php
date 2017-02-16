@@ -29,7 +29,7 @@ class CommentController extends Controller
         $post = Post::exist()->findOrFail($id);
         $content = $request->content;
         $resultData = collect(['result' => false]);
-        if(!$content || trim($content) == ''){
+        if (!$content || trim($content) == '') {
             return $resultData;
         }
         $comment = new Comment();

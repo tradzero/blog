@@ -13,7 +13,7 @@ class Controller extends BaseController
 
     public function guestLike($type, $behavior, $field, $id)
     {
-         if(!Session($field . ':' . $id)){
+        if (!Session($field . ':' . $id)) {
             $type->increment($behavior);
             Session([$field . ':' . $id => true]);
             return true;

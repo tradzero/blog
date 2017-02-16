@@ -13,7 +13,7 @@ class CreateTablePostTag extends Migration
      */
     public function up()
     {
-        Schema::create('post_tag', function(Blueprint $table) {
+        Schema::create('post_tag', function (Blueprint $table) {
             $table->integer('post_id')->comment('外键-文章id');
             $table->integer('tag_id')->comment('外键-标签id');
         });

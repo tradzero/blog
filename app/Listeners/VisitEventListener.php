@@ -19,6 +19,6 @@ class VisitEventListener
     public function handle(ViewEvent $event)
     {
         $postId = $event->postId;
-        Redis::zincrby('postViewCount' , 1 , 'post:' . $postId);       
+        Redis::zincrby('postViewCount', 1, 'post:' . $postId);
     }
 }
