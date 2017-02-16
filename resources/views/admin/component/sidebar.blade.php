@@ -33,7 +33,7 @@
             <a href="/admin/users/create"><i class="fa fa-user-circle" aria-hidden="true"></i> <span>新的用户</span></a>
         </li>
         <li name="sidebar-users-my">
-            <a href="/users/{{ Auth::user()->id }}"><i class="fa fa-vcard" aria-hidden="true"></i> <span>我的资料</span></a>
+            <a href="/admin/users/{{ Auth::user()->id }}"><i class="fa fa-vcard" aria-hidden="true"></i> <span>我的资料</span></a>
         </li>
 
         <li class="header">设置</li>

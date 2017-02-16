@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'Www\PostController@index');
-Route::get('/post/{id}', 'Www\PostController@show');
+Route::get('/post/{id}', 'Www\PostController@show')->name('post.show');
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => ['auth']], function () {
@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
     Route::post('comments/{id}/deny', 'CommentController@deny')->name('comments.deny');
     Route::post('comments/{id}/pass', 'CommentController@pass')->name('comments.pass');
     Route::resource('comments', 'CommentController');
+
+    Route::resource('users', 'UserController');
     Route::post('/upload', 'UploadController@qiniuUpload');
 });
 

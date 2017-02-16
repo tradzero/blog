@@ -15,6 +15,9 @@
     [v-cloak] {
         display: none;
     }
+    body{
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
   </style>
   @yield('style')
 
