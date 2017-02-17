@@ -19,7 +19,7 @@
                     <span class="box-title">文章列表</span>
                 </div>
                 <div class="box-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>文章id</th>

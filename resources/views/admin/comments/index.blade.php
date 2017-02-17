@@ -54,7 +54,7 @@
                     <span class="box-title">评论列表</span>
                 </div>
                 <div class="box-body">
-                    <table class="table table-striped table-responsive table-fix">
+                    <table class="table table-striped table-responsive table-hover table-fix">
                         <thead>
                             <tr>
                                 <th class="th-user">作者</th>

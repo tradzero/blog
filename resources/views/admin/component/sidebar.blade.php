@@ -27,7 +27,7 @@
 
         <li class="header">用户</li>
         <li name="sidebar-users-index">
-            <a href="/admin/users/index"><i class="fa fa-user" aria-hidden="true"></i> <span>管理用户</span></a>
+            <a href="/admin/users"><i class="fa fa-user" aria-hidden="true"></i> <span>管理用户</span></a>
         </li>
         <li name="sidebar-users-create">
             <a href="/admin/users/create"><i class="fa fa-user-circle" aria-hidden="true"></i> <span>新的用户</span></a>
