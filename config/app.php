@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        Overtrue\LaravelWechat\ServiceProvider::class,
         //
 
         /*
@@ -230,7 +231,8 @@ return [
         /**
          *  package service
          */
-         'Carbon' => \Carbon\Carbon::class,
+        'Carbon' => \Carbon\Carbon::class,
+        'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
     ],
 
 ];
