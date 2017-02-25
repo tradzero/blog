@@ -54,7 +54,7 @@
                     <span class="box-title">评论列表</span>
                 </div>
                 <div class="box-body">
-                    <table class="table table-striped table-responsive table-fix">
+                    <table class="table table-striped table-responsive table-hover table-fix">
                         <thead>
                             <tr>
                                 <th class="th-user">作者</th>
@@ -80,7 +80,7 @@
                                         <a href="/post/{{ $comment->post->id }}">{{ $comment->post->title }}</a>
                                     </td>
                                     <td>
-                                        {{ $comment->updated_at->diffForHumans() }}
+                                        {{ $comment->created_at->diffForHumans() }}
                                     </td>
                                     <td>
                                         {{ $comment->is_deleted ? '审核中' : '显示中' }}
@@ -89,9 +89,9 @@
                                         <div class="button-group">
                                             <a href="{{ URL::route('comments.show', $comment->id) }}" class="btn btn-info">查看</a>
                                             @if($comment->is_deleted)
-                                                <button class="btn btn-success">通过</button>
+                                                <button onclick="setVisibility('pass', {{ $comment->id }})" class="btn btn-success">通过</button>
                                             @else
-                                                <button class="btn btn-danger">隐藏</button>
+                                                <button onclick="setVisibility('deny', {{ $comment->id }})" class="btn btn-danger">隐藏</button>
                                             @endif
                                         </div>
                                     </td>
@@ -106,4 +106,23 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="//cdn.bootcss.com/axios/0.15.3/axios.min.js"></script>
+    <script>
+        function setVisibility(attribute, id)
+        {
+            var url = '/admin/comments/' + id + '/' + attribute;
+            axios.post(url, null, {
+                header: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            }).then(function(data) {
+                location.reload();
+            }).catch(function (error) {
+                console.log(error);
+            })
+        }
+    </script>
 @endsection

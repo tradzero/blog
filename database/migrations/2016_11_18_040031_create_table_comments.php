@@ -13,7 +13,7 @@ class CreateTableComments extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function(Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id')->comment('主键-评论id');
             $table->integer('user_id')->comment('外键-用户id');
             $table->integer('post_id')->comment('外键-文章id');

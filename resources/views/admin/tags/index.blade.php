@@ -18,7 +18,7 @@
                     <span class="box-title">分类列表</span>
                 </div>
                 <div class="box-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>分类名</th>

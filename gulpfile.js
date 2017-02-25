@@ -19,12 +19,26 @@ require('laravel-elixir-vue-2');
 // });
 elixir((mix) => {
     /*
+      NProgress
+    */
+    mix.scripts([
+        './node_modules/nprogress/nprogress.js'
+    ], 'public/nprogress/nprogress.js');
+    
+    /*
+      admin
+    */
+    mix.scripts([
+        'resources/assets/js/admin.js'
+    ], 'public/js/admin.js');
+    /*
       bootstrap
     */
     mix.copy('vendor/almasaeed2010/adminlte/bootstrap/css/bootstrap.min.css',
                      'public/bootstrap/css/bootstrap.min.css');
     mix.copy('vendor/almasaeed2010/adminlte/bootstrap/js/bootstrap.min.js',
                      'public/bootstrap/js/bootstrap.min.js');
+
     /*
       css/js
     */

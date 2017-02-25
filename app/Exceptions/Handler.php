@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use EasyWeChat;
 
 class Handler extends ExceptionHandler
 {
@@ -32,6 +33,17 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        $userId = env('WECHAT_USER_OPENID');
+        $templateId = env('WECHAT_TEMPLATE');
+        $data = [
+            'first' => '系统异常',
+            'keyword1' => get_class($exception),
+            'keyword2' => url()->current(),
+            'keyword3' => $_SERVER['REMOTE_ADDR'],
+            'error' => $exception->getMessage(),
+            'remark' => '请及时处理'
+        ];
+        EasyWeChat::notice()->to($userId)->uses($templateId)->data($data)->send();
         parent::report($exception);
     }
 

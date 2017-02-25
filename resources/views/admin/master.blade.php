@@ -10,13 +10,20 @@
   <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
   <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
+  <link href="{{ asset('nprogress/nprogress.css') }}" rel="stylesheet">
   <style>
     [v-cloak] {
         display: none;
     }
+    body{
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
   </style>
   @yield('style')
+
   <script src="/adminlte/jQuery/jquery-2.2.3.min.js"></script>
+  <script src="{{ asset('nprogress/nprogress.js') }}"></script>
+  <script src="{{ asset('js/admin.js') }}"></script>
   <!--[if lt IE 9]>
   <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv-printshiv.js"></script>
   <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
