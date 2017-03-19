@@ -18,9 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('nickname')->comment('昵称');
             $table->string('username')->unique()->comment('用户名');
             $table->string('password')->comment('密码');
-            $table->boolean('sex')->comment('性别');
+            $table->boolean('sex')->default(0)->comment('性别');
             $table->string('mail')->comment('邮箱');
-            $table->tinyInteger('role')->comment('用户权限 0 admin, 1 授权用户, 2 游客');
+            $table->tinyInteger('role')->default(2)->comment('用户权限 0 admin, 1 授权用户, 2 游客');
             $table->boolean('is_banned')->default(0)->comment('是否被禁用');
             $table->rememberToken();
             $table->timestamps();

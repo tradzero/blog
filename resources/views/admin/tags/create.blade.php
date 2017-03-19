@@ -6,6 +6,9 @@
 @endsection
 @section('content')
     <div class="container-fluid">
+        @if(count($errors))
+            @include('admin.component.alert-danger', [ 'errors' => $errors ])
+        @endif
         <div class="row">
             <form action="{{ URL::route('tags.store') }}" method="POST">
                 {{ csrf_field() }}

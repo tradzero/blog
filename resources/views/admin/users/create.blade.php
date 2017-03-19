@@ -5,6 +5,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            @if(count($errors))
+                @include('admin.component.alert-danger', [ 'errors' => $errors ])
+            @endif
             <div class="box">
                 <div class="box-header">
                     <span class="box-title">创建用户</span>
@@ -14,11 +17,11 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="input_user_name">用户名</label>
-                            <input type="text"  id="input_user_name" placeholder="请输入用户名" name="username" class="form-control">
+                            <input type="text" id="input_user_name" placeholder="请输入用户名" name="username" class="form-control" value="{{ old('username') }}">
                         </div>
                         <div class="form-group">
                             <label for="input_nick_name">昵称</label>
-                            <input type="text"  id="input_nick_name" placeholder="请输入昵称" name="username" class="form-control">
+                            <input type="text" id="input_nick_name" placeholder="请输入昵称" name="nickname" class="form-control" value="{{ old('nickname') }}">
                         </div>
                         <div class="form-group">
                             <label for="select_sex">性别</label>
@@ -33,12 +36,12 @@
                         </div>
                         <div class="form-group">
                             <label for="input_password_confirm">重复密码</label>
-                            <input type="text" id="input_password_confirm" placeholder="请输入重复密码" name="password_confirm" class="form-control">
+                            <input type="text" id="input_password_confirm" placeholder="请输入重复密码" name="password_confirmation" class="form-control">
                         </div>
                         <button class="btn btn-primary" type="button" onclick="randomPassword()">随机生成</button>
                         <div class="form-group">
                             <label for="input_mail">邮箱</label>
-                            <input type="text" id="input_mail" name="mail" placeholder="请输入邮箱" class="form-control">
+                            <input type="text" id="input_mail" name="mail" placeholder="请输入邮箱" class="form-control" value="{{ old('mail') }}">
                         </div>
                         <div class="form-group">
                             <label for="select_role">设置角色</label>
@@ -49,7 +52,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <button type="button" class="btn btn-primary">提交</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
                     </div>
                 </form>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\User;
 
 class UserController extends Controller
@@ -19,8 +20,15 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
+        $userData = $request->all();
+        $user = User::create($userData);
+        $user->role = $request->get('role', 2);
+        $user->save();
+        if ($user) {
+            return redirect()->route('users.index')->with('success', '创建成功');
+        }
     }
 
     public function show($id)
