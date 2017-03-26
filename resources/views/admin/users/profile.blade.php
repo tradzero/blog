@@ -64,11 +64,13 @@
                             </a>
                         </div>
                         <br>
-                        <div>
-                            @foreach($user->posts as $post)
+                        <div >
+                            @forelse($user->posts as $post)
                                 <a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a> <span class="text-muted"> {{ $post->like }} 赞 - {{ $post->created_at->diffForHumans() }}</span> 
                                 <hr>
-                            @endforeach
+                            @empty
+                                <p class="text-center">暂无文章</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -78,13 +80,17 @@
                     <span class="box-title">最新评论</span>
                 </div>
                 <div class="box-body">
-                    @foreach($user->comments as $comment)
+                    @forelse($user->comments as $comment)
                         <a href="{{ route('post.show', $comment->post->id) }}">{{ $comment->post->title }}</a> <span class="text-muted"> - {{ $comment->created_at->diffForHumans() }}</span>
                         <blockquote>
                             {{ $comment->comment }}
                         </blockquote>
                         <hr>
-                    @endforeach
+                    @empty
+                        <blockquote class="text-center">
+                            暂无评论
+                        </blockquote>
+                    @endforelse
                 </div>
             </div>
         </div>

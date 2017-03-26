@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\User;
+use App\Mail\RegisterByInvite;
+use Mail;
 
 class UserController extends Controller
 {
@@ -27,6 +29,9 @@ class UserController extends Controller
         $user->role = $request->get('role', 2);
         $user->save();
         if ($user) {
+            Mail::to($user->mail)->send(
+                new RegisterByInvite($user->username, $user->nickname, $request->get('password'))
+            );
             return redirect()->route('users.index')->with('success', '创建成功');
         }
     }

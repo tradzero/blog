@@ -39,3 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
 Route::group(['prefix' => 'api', 'middleware' => ['auth', 'admin'], 'namespace' => 'Api'], function () {
     Route::resource('tag', 'TagController');
 });
+
+// Route::get('/test', function () {
+//     return view('mails.registerByInvite');
+// });
