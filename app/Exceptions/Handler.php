@@ -43,7 +43,9 @@ class Handler extends ExceptionHandler
             'error' => $exception->getMessage(),
             'remark' => '请及时处理'
         ];
-        EasyWeChat::notice()->to($userId)->uses($templateId)->data($data)->send();
+        if (env('APP_DEBUG', false)) {
+            EasyWeChat::notice()->to($userId)->uses($templateId)->data($data)->send();
+        }
         parent::report($exception);
     }
 
