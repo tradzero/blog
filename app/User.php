@@ -14,7 +14,8 @@ class User extends Authenticatable
     const ROLE_VISITOR = 2; // 游客
     
     protected $fillable = [
-        'nickname', 'username', 'sex', 'password', 'mail'
+        'nickname', 'username', 'sex', 'password',
+        'mail', 'role'
     ];
 
     protected $hidden = [
@@ -29,5 +30,10 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 }

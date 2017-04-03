@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <hr>
-                    <button class="btn btn-success btn-block btn-flat">编辑资料</button>
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success btn-block btn-flat">编辑资料</a>
                 </div>
             </div>
         </div>

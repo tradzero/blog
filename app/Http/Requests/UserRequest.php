@@ -13,12 +13,14 @@ class UserRequest extends FormRequest
 
     public function rules()
     {
+        $id = $this->route('user');
         return [
-            'username' => 'required|alpha_dash|min:4|max:40|unique:users,username',
+            'edit' => 'required|integer|between:0,1',
+            'username' => 'required|alpha_dash|min:4|max:40|unique:users,username,' . $id,
             'nickname' => 'required|min:1|max:20',
             'sex' => 'required|boolean',
-            'password' => 'required|min:6|alpha_dash|confirmed',
-            'mail' => 'required|email|unique:users,mail',
+            'password' => 'required_if:edit,0|min:6|alpha_dash|confirmed',
+            'mail' => 'required|email|unique:users,mail,' . $id,
             'role' => 'required|between:0,2',
         ];
     }
@@ -28,7 +30,7 @@ class UserRequest extends FormRequest
         return [
             'username.required' => '用户名必须填写',
             'nickname.required' => '昵称必须填写',
-            'password.required' => '密码必须填写',
+            'password.required_if' => '密码必须填写',
             'mail.required' => '邮箱必须填写',
             'username.alpha_dash' => '用户名只能由字母数字或下划线组成',
             'username.min' => '用户名最短长度为4',

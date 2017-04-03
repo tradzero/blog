@@ -37,6 +37,23 @@ class UserController extends Controller
         return view('admin.users.profile', compact('user'));
     }
 
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
+    }
+    
+    public function update($id, UserRequest $request)
+    {
+        $userData = $request->only(['nickname', 'sex', 'password', 'mail', 'role']);
+        $userData = array_filter($userData, function ($value) {
+            return !is_null($value);
+        });
+        $user = User::findOrFail($id);
+        $user->update($userData);
+        return redirect()->route('users.index')->with('success', '修改成功');
+    }
+
     private function getUsersLatestInfoById($id)
     {
         $user = User::with([
