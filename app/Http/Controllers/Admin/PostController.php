@@ -25,7 +25,7 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $tagIds = $request->tags;
+        $tagIds = $request->get('tags', []);
         $tags = Tag::whereIn('id', $tagIds)->get();
 
         $post = new Post();
