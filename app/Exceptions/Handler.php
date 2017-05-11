@@ -39,7 +39,7 @@ class Handler extends ExceptionHandler
             'first' => '系统异常',
             'keyword1' => get_class($exception),
             'keyword2' => url()->current(),
-            'keyword3' => $_SERVER['REMOTE_ADDR'],
+            'keyword3' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'localhost',
             'error' => $exception->getMessage(),
             'remark' => '请及时处理'
         ];
