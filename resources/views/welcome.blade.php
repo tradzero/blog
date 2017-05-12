@@ -12,7 +12,6 @@
         <link href="/css/app.css" rel="stylesheet">
         <link href="/css/front.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/welcome.css">
-        <link href="//cdn.bootcss.com/rainbow/1.2.0/themes/github.min.css">
         <!-- Script -->
         <script src="/js/jquery-3.1.1.js"></script>
     </head>
