@@ -7,6 +7,10 @@ html, body {
     margin: 0;
 }
 
+pre {
+    border:none !important;
+}
+
 .full-height {
     height: 100vh;
 }
@@ -37,7 +41,7 @@ html, body {
 
 .article {
     width: 92.5%;
-    margin: 0 auto 10%;
+    margin: 4% auto 0%;
 }
 .header {
     text-align: center;
@@ -93,7 +97,7 @@ html, body {
 }
 
 .content-title > a{
-    font-size: 20px;
+    font-size: 25px;
     text-decoration: none;
     color: #636b6f;
 }

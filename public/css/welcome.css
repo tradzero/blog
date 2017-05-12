@@ -1,0 +1,15 @@
+h1 {
+    font-size: 25px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+/*h3 {
+    font-size:
+}*/
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 12px;
+}

@@ -14,6 +14,12 @@ class PostController extends Controller
     public function index()
     {
         $indexPosts = Post::exist()->with('user')->orderBy('created_at', 'desc')->paginate(5);
+        $indexPosts->each(function ($post) {
+            $post->content = strip_tags($post->content);
+            $post->content = str_limit($post->content, config('blog.preview_length'));
+            $post->content = app('parsedown')->text($post->content);
+            $post->content = strip_tags($post->content);
+        });
         return view('welcome', compact('indexPosts'));
     }
     
