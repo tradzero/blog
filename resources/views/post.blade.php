@@ -7,11 +7,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <title>{{ $post['title'] }}</title>
-        <!-- Fonts -->
+        <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
         <link href="/css/front.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/wysiwyg.css">
         <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Styles -->
+        <!-- Script -->
         <script src="/js/jquery-3.1.1.js"></script>
         <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="//cdn.bootcss.com/vue/2.1.4/vue.js"></script>
@@ -42,7 +43,7 @@
                 </div>
             </div>
             <!-- content text -->
-            <div class="content postContent">
+            <div class="wysiwyg">
                 {!! $post['content'] !!}
             </div>
         </div>
