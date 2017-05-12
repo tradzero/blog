@@ -62,7 +62,8 @@
 {!! $post->content !!}
             */});
             myEditor.setVal(text);
-            $(".CodeMirror-lines").click()
+            $('.editor__menu--edit').trigger('click');
+            $('.editor__menu--live').trigger('click');
         });
     </script>
 @endsection
