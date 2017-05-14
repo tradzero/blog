@@ -31,7 +31,7 @@ class PostController extends Controller
         $type = (boolean)$request->type ? 'unlike' : 'like';
         
         $resultData['result'] = $this->guestLike($post, $type, 'post', $id);
-
+        $this->updateCache($id);
         $resultData['like'] = $post->like;
         $resultData['unlike'] = $post->unlike;
         return $resultData->toJson();
@@ -54,5 +54,11 @@ class PostController extends Controller
         $post = Post::exist()->with('tags', 'user', 'comments.user')->findOrFail($postId);
         $post->content = app('parsedown')->text($post['content']);
         return $post->toArray();
+    }
+
+    private function updateCache($postId)
+    {
+        $postData = $this->postCache($postId);
+        Cache::tags(['posts', 'comments', 'user'])->put('post:' . $postId, $postData, 60*24*1);
     }
 }

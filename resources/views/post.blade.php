@@ -21,7 +21,7 @@
 
     </head>
 <body>
-    <div class="flex-center position-ref full-height" id="app">
+    <div class="flex-center position-ref full-height" id="app" v-cloak>
         @include('component.loginbar')
         <!-- home -->
         <div class="top-left">
@@ -54,8 +54,8 @@
         <blockquote>
             <p class="small">本文标签：@foreach($post['tags'] as $tag) <a href="/tag/{{ $tag['id'] }}">{{ $tag['name'] }}</a>  @endforeach </p>
             <p class="small">本文作者：{{ $post['user']['username'] }}</p>
-            <p class="small">已有：@{{ post['like'] }} 人点赞 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
-            <p class="small">已有：@{{ post['unlike'] }} 人点踩 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
+            <p class="small">已有：@{{ post['like'] }} 人点赞 <button class="btn btn-default" @click="postLike('like', '0')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
+            <p class="small">已有：@{{ post['unlike'] }} 人点踩 <button class="btn btn-default" @click="postLike('like', '1')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
         </blockquote>
         <!-- comments -->
         <div class="comments text-center">
@@ -101,7 +101,7 @@
         methods: {
             like: function(index, method) {
                 var commentId = this.post.comments[index].id;
-                var router = method ? 'like' : 'unlike'; 
+                var router = method == '0' ? 'like' : 'unlike'; 
                 var that = this;
                 $.ajax({
                     url: '/comment/' + commentId + '/' + 'like',
@@ -124,7 +124,7 @@
             },
             postLike: function(index, method) {
                 var postId = this.post.id;
-                var router = method ? 'like' : 'unlike'; 
+                var router = method == '0' ? 'like' : 'unlike'; 
                 var that = this;
                 $.ajax({
                     url: '/post/' + postId + '/' + 'like',
