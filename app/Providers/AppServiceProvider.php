@@ -8,7 +8,7 @@ use Qiniu\Auth;
 use Parsedown;
 use App\Post;
 use App\Observers\PostObserver;
-use Schema;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
