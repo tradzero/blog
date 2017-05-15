@@ -8,7 +8,6 @@ use Qiniu\Auth;
 use Parsedown;
 use App\Post;
 use App\Observers\PostObserver;
-use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
 
         Post::observe(PostObserver::class);
 
-        Schema::defaultStringLength(191);
     }
 
     /**
