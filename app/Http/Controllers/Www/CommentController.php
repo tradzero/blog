@@ -21,6 +21,7 @@ class CommentController extends Controller
 
         $resultData['like'] = $comment->like;
         $resultData['unlike'] = $comment->unlike;
+        $this->updateCache($comment->post->id);
         return $resultData->toJson();
     }
 
@@ -36,6 +37,7 @@ class CommentController extends Controller
         $comment->user_id = Auth::user()->id;
         $comment->comment = $content;
         $post->comments()->save($comment);
+        $this->updateCache($id);
         $resultData['result'] = true;
         $resultData['comment'] = $comment;
         return response()->json($resultData);

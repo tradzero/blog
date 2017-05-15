@@ -48,17 +48,4 @@ class PostController extends Controller
         
         return view('post', compact('post'));
     }
-    
-    private function postCache($postId)
-    {
-        $post = Post::exist()->with('tags', 'user', 'comments.user')->findOrFail($postId);
-        $post->content = app('parsedown')->text($post['content']);
-        return $post->toArray();
-    }
-
-    private function updateCache($postId)
-    {
-        $postData = $this->postCache($postId);
-        Cache::tags(['posts', 'comments', 'user'])->put('post:' . $postId, $postData, 60*24*1);
-    }
 }
