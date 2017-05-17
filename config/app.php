@@ -180,6 +180,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         YuanChao\Editor\EndaEditorServiceProvider::class,
 
+        Hitman\Elasticsearch\EsLogServiceProvider::class,
+
     ],
 
     /*
@@ -233,6 +235,8 @@ return [
          */
         'Carbon' => \Carbon\Carbon::class,
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
+
+        'EsLog' => Hitman\Elasticsearch\Facade\EsLog::class,
     ],
 
 ];

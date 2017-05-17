@@ -12,6 +12,10 @@
 */
 
 Route::get('/', 'Www\PostController@index');
+Route::get('/error', function () {
+    abort(500);
+});
+
 Route::get('/post/{id}', 'Www\PostController@show')->name('post.show');
 Auth::routes();
 Route::get('/home', 'HomeController@index');
@@ -39,3 +43,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
 Route::group(['prefix' => 'api', 'middleware' => ['auth', 'admin'], 'namespace' => 'Api'], function () {
     Route::resource('tag', 'TagController');
 });
+
