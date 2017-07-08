@@ -8,11 +8,12 @@
         <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <title>Zero的胡言乱语</title>
 
-        <!-- Fonts -->
-        <link href="/css/app.css" rel="stylesheet">
         <!-- Styles -->
-        <script src="/js/jquery-3.1.1.js"></script>
+        <link href="/css/app.css" rel="stylesheet">
         <link href="/css/front.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/welcome.css">
+        <!-- Script -->
+        <script src="/js/jquery-3.1.1.js"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -33,9 +34,13 @@
 
             @foreach($indexPosts as $post)
             <div class="article">
-                 <div class="content">
-                    <div class="content-title m-b-md"><a href="/post/{{$post->id}}">{{ $post->title }}</a></div>
-                    <div>{{ $post->content }}</div>
+                 <div>
+                    <div class="content content-title m-b-md"><a href="/post/{{$post->id}}">{{ $post->title }}</a></div>
+                    <div class="wysiwyg">
+                        <div>
+                            {!! $post->content !!}
+                        </div>
+                    </div>
                 </div>
                 <div class="article-footer">
                     <p>

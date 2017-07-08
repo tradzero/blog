@@ -53,7 +53,17 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            myEditor.setVal('{!! $post->content !!}');
+            function heredoc(fn) {
+                var resultText = fn.toString().split('\n').slice(1,-1).join('\n') + '\n';
+                return resultText;
+            }
+            {{-- 注意下面不要有空格 否则数据将不准确 --}}
+            var text = heredoc(function() {/*
+{!! $post->content !!}
+            */});
+            myEditor.setVal(text);
+            $('.editor__menu--edit').trigger('click');
+            $('.editor__menu--live').trigger('click');
         });
     </script>
 @endsection

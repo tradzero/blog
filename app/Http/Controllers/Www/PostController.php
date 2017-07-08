@@ -14,6 +14,12 @@ class PostController extends Controller
     public function index()
     {
         $indexPosts = Post::exist()->with('user')->orderBy('created_at', 'desc')->paginate(5);
+        $indexPosts->each(function ($post) {
+            $post->content = strip_tags($post->content);
+            $post->content = str_limit($post->content, config('blog.preview_length'));
+            $post->content = app('parsedown')->text($post->content);
+            $post->content = strip_tags($post->content);
+        });
         return view('welcome', compact('indexPosts'));
     }
     
@@ -25,7 +31,7 @@ class PostController extends Controller
         $type = (boolean)$request->type ? 'unlike' : 'like';
         
         $resultData['result'] = $this->guestLike($post, $type, 'post', $id);
-
+        $this->updateCache($id);
         $resultData['like'] = $post->like;
         $resultData['unlike'] = $post->unlike;
         return $resultData->toJson();
@@ -41,12 +47,5 @@ class PostController extends Controller
         event(new ViewEvent($post['id']));
         
         return view('post', compact('post'));
-    }
-    
-    private function postCache($postId)
-    {
-        $post = Post::exist()->with('tags', 'user', 'comments.user')->findOrFail($postId);
-        $post->content = app('parsedown')->text($post['content']);
-        return $post->toArray();
     }
 }

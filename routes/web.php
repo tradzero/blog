@@ -12,6 +12,10 @@
 */
 
 Route::get('/', 'Www\PostController@index');
+Route::get('/error', function () {
+    abort(500);
+});
+
 Route::get('/post/{id}', 'Www\PostController@show')->name('post.show');
 Auth::routes();
 Route::get('/home', 'HomeController@index');
@@ -40,6 +44,3 @@ Route::group(['prefix' => 'api', 'middleware' => ['auth', 'admin'], 'namespace' 
     Route::resource('tag', 'TagController');
 });
 
-// Route::get('/test', function () {
-//     return view('mails.registerByInvite');
-// });

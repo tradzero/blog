@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         App\User::create([
             'nickname' => '杰洛',
             'username' => 'admin',
-            'password' => bcrypt(123456),
+            'password' => 123456,
             'sex'      => 0,
             'mail'     => 'admin@drakframe.com',
             'role'     => 0,
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         factory(App\Post::class)->times(10)->create()->each(function ($post) use ($faker) {
             $post->tags()->sync(
                 // 随机为文章添加标签
-                $faker->randomElements(range(1, 5), $count=rand(1, 3))
+                $faker->randomElements(range(1, 5), $count = rand(1, 3))
             );
         });
         factory(App\Tag::class)->times(5)->create();

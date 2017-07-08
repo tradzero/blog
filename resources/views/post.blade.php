@@ -7,17 +7,21 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <title>{{ $post['title'] }}</title>
-        <!-- Fonts -->
+        <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
         <link href="/css/front.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/wysiwyg.css">
         <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Styles -->
+        <link href="//cdn.bootcss.com/rainbow/1.2.0/themes/github.min.css" rel="stylesheet">
+        
+        <!-- Script -->
         <script src="/js/jquery-3.1.1.js"></script>
         <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="//cdn.bootcss.com/vue/2.1.4/vue.js"></script>
+
     </head>
 <body>
-    <div class="flex-center position-ref full-height" id="app">
+    <div class="flex-center position-ref full-height" id="app" v-cloak>
         @include('component.loginbar')
         <!-- home -->
         <div class="top-left">
@@ -42,7 +46,7 @@
                 </div>
             </div>
             <!-- content text -->
-            <div class="content postContent">
+            <div class="wysiwyg">
                 {!! $post['content'] !!}
             </div>
         </div>
@@ -50,8 +54,8 @@
         <blockquote>
             <p class="small">本文标签：@foreach($post['tags'] as $tag) <a href="/tag/{{ $tag['id'] }}">{{ $tag['name'] }}</a>  @endforeach </p>
             <p class="small">本文作者：{{ $post['user']['username'] }}</p>
-            <p class="small">已有：@{{ post['like'] }} 人点赞 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
-            <p class="small">已有：@{{ post['unlike'] }} 人点踩 <button class="btn btn-default" @click="postLike('like')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
+            <p class="small">已有：@{{ post['like'] }} 人点赞 <button class="btn btn-default" @click="postLike('like', '0')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
+            <p class="small">已有：@{{ post['unlike'] }} 人点踩 <button class="btn btn-default" @click="postLike('like', '1')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
         </blockquote>
         <!-- comments -->
         <div class="comments text-center">
@@ -79,7 +83,9 @@
             </form>
         </div>
     </div>
-</body>
+<!-- highlight -->
+@include('component.highlight')
+
 <script>
     var vm = new Vue({
         el: "#app",
@@ -95,7 +101,7 @@
         methods: {
             like: function(index, method) {
                 var commentId = this.post.comments[index].id;
-                var router = method ? 'like' : 'unlike'; 
+                var router = method == '0' ? 'like' : 'unlike'; 
                 var that = this;
                 $.ajax({
                     url: '/comment/' + commentId + '/' + 'like',
@@ -118,7 +124,7 @@
             },
             postLike: function(index, method) {
                 var postId = this.post.id;
-                var router = method ? 'like' : 'unlike'; 
+                var router = method == '0' ? 'like' : 'unlike'; 
                 var that = this;
                 $.ajax({
                     url: '/post/' + postId + '/' + 'like',
@@ -170,4 +176,5 @@
         },
     });
 </script>
+</body>
 </html>
