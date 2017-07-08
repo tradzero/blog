@@ -6,7 +6,6 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use EasyWeChat;
-use EsLog;
 
 class Handler extends ExceptionHandler
 {
@@ -34,7 +33,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        EsLog::exception($exception);
         $userId = env('WECHAT_USER_OPENID');
         $templateId = env('WECHAT_TEMPLATE');
         $data = [
