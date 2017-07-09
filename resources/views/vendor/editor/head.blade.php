@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="http://cdn.bootcss.com/codemirror/4.10.0/codemirror.min.css">
-<link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.4/styles/default.min.css">
-<script src="http://cdn.bootcss.com/highlight.js/8.4/highlight.min.js"></script>
-<script src="http://cdn.bootcss.com/marked/0.3.2/marked.min.js"></script>
-<script type="text/javascript" src="http://cdn.bootcss.com/codemirror/4.10.0/codemirror.min.js"></script>
-<script type="text/javascript" src="http://cdn.bootcss.com/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/4.10.0/codemirror.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.4/styles/default.min.css">
+<script src="//cdn.bootcss.com/highlight.js/8.4/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/marked/0.3.2/marked.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/codemirror/4.10.0/codemirror.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
 
 <link rel="stylesheet" href="{{ asset('plugin/editor/css/pygment_trac.css') }}">
 <link rel="stylesheet" href="{{ asset('plugin/editor/css/editor.css') }}">
