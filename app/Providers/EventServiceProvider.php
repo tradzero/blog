@@ -16,6 +16,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ViewEvent' => [
             'App\Listeners\VisitEventListener',
         ],
+
+        'App\Events\PostUpdated' => [
+            'App\Listeners\UpdatePostCacheListener'
+        ],
     ];
 
     /**

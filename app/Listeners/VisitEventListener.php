@@ -5,7 +5,6 @@ namespace App\Listeners;
 use App\Events\ViewEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use Redis;
 
 class VisitEventListener
