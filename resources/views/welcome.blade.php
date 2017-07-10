@@ -63,7 +63,7 @@
                     {{ $indexPosts->links('vendor.pagination.default') }}
                 </div>
             </div>
-            {{-- @include('component.footerbar') --}}
+            @include('component.footerbar')
         </div>
     </body>
 </html>

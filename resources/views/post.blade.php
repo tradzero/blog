@@ -27,62 +27,64 @@
         <div class="top-left">
             <a class="navi" href="/"><i class="fa fa-home fa-5" aria-hidden="true"></i></a>
         </div>
-        <!-- title -->
-        <div class="header">
-            <div class="postTitle">{{ $post['title'] }}</div>
-        </div>
-        <!-- content -->
-        <div class="article">
-            <div class="postInfo center">
-                <!-- content's tag -->
-                <div class="postTags">
-                    @foreach($post['tags'] as $tag)
-                        <a href="/tag/{{ $tag['id'] }}"><span class="label label-primary">{{ $tag['name'] }}</span></a>
-                    @endforeach
+        <div class="wrap">
+            <!-- title -->
+            <div class="header">
+                <div class="postTitle">{{ $post['title'] }}</div>
+            </div>
+            <!-- content -->
+            <div class="article">
+                <div class="postInfo center">
+                    <!-- content's tag -->
+                    <div class="postTags">
+                        @foreach($post['tags'] as $tag)
+                            <a href="/tag/{{ $tag['id'] }}"><span class="label label-primary">{{ $tag['name'] }}</span></a>
+                        @endforeach
+                    </div>
+                    <!-- post date -->
+                    <div class="postDate">
+                        {{ $post['created_at'] }}
+                    </div>
                 </div>
-                <!-- post date -->
-                <div class="postDate">
-                    {{ $post['created_at'] }}
+                <!-- content text -->
+                <div class="wysiwyg">
+                    {!! $post['content'] !!}
                 </div>
             </div>
-            <!-- content text -->
-            <div class="wysiwyg">
-                {!! $post['content'] !!}
+            <!-- post info-->
+            <blockquote>
+                <p class="small">本文标签：@foreach($post['tags'] as $tag) <a href="/tag/{{ $tag['id'] }}">{{ $tag['name'] }}</a>  @endforeach </p>
+                <p class="small">本文作者：{{ $post['user']['username'] }}</p>
+                <p class="small">已有：@{{ post['like'] }} 人点赞 <button class="btn btn-default" @click="postLike('like', '0')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
+                <p class="small">已有：@{{ post['unlike'] }} 人点踩 <button class="btn btn-default" @click="postLike('like', '1')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
+            </blockquote>
+            <!-- comments -->
+            <div class="comments text-center">
+                <div class="comment panel panel-default" v-for="(comment, index) in post.comments">
+                    <div class="panel-heading text-left">
+                        <span :name="comment.id">
+                            @{{ comment.user.nickname }} 评论：
+                        </span>
+                    </div>
+                    <div  class="panel-body">
+                        @{{ comment.comment }}
+                    </div>
+                    <div class="panel-footer text-left">
+                        <button class="btn btn-default" @click="like(index, '0')" style="margin-right: 1%"><i class="fa fa-thumbs-o-up" aria-hidden="true">点赞：@{{ comment.like }}</i></button> 
+                        <button class="btn btn-default" @click="like(index, '1')" style="margin-right: 1%"><i class="fa fa-thumbs-o-down" aria-hidden="true">踩：@{{ comment.unlike }}</i></button>
+                        <span style="margin-right: 3%">评论于：@{{ comment.created_at }}</span>
+                    </div>
+                </div>
+                
+                <!-- write comments -->
+                <form action="/post/{{ $post['id'] }}/comment" method="post">
+                    {{ csrf_field() }}
+                    <textarea class="form-control" rows="10" placeholder="留下你的评论"></textarea>
+                    <p class="text-left"><button @click.prevent="submit()" style="margin-top: 1%" class="btn btn-primary btn-block" type="submit">提交</button></p>
+                </form>
             </div>
         </div>
-        <!-- post info-->
-        <blockquote>
-            <p class="small">本文标签：@foreach($post['tags'] as $tag) <a href="/tag/{{ $tag['id'] }}">{{ $tag['name'] }}</a>  @endforeach </p>
-            <p class="small">本文作者：{{ $post['user']['username'] }}</p>
-            <p class="small">已有：@{{ post['like'] }} 人点赞 <button class="btn btn-default" @click="postLike('like', '0')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></p>
-            <p class="small">已有：@{{ post['unlike'] }} 人点踩 <button class="btn btn-default" @click="postLike('like', '1')"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></p>
-        </blockquote>
-        <!-- comments -->
-        <div class="comments text-center">
-            <div class="comment panel panel-default" v-for="(comment, index) in post.comments">
-                <div class="panel-heading text-left">
-                    <span :name="comment.id">
-                        @{{ comment.user.nickname }} 评论：
-                    </span>
-                </div>
-                <div  class="panel-body">
-                    @{{ comment.comment }}
-                </div>
-                <div class="panel-footer text-left">
-                    <button class="btn btn-default" @click="like(index, '0')" style="margin-right: 1%"><i class="fa fa-thumbs-o-up" aria-hidden="true">点赞：@{{ comment.like }}</i></button> 
-                    <button class="btn btn-default" @click="like(index, '1')" style="margin-right: 1%"><i class="fa fa-thumbs-o-down" aria-hidden="true">踩：@{{ comment.unlike }}</i></button>
-                    <span style="margin-right: 3%">评论于：@{{ comment.created_at }}</span>
-                </div>
-            </div>
-            
-            <!-- write comments -->
-            <form action="/post/{{ $post['id'] }}/comment" method="post">
-                {{ csrf_field() }}
-                <textarea class="form-control" rows="10" placeholder="留下你的评论"></textarea>
-                <p class="text-left"><button @click.prevent="submit()" style="margin-top: 1%" class="btn btn-primary btn-block" type="submit">提交</button></p>
-            </form>
-        </div>
-        {{-- @include('component.footerbar') --}}
+        @include('component.footerbar')
     </div>
 <!-- highlight -->
 @include('component.highlight')

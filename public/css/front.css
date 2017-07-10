@@ -151,6 +151,10 @@ pre {
     margin-bottom: 30px;
 }
 
+.wrap {
+    min-height: 80%;
+}
+
 .footer-bar {
     background-color: #EAEAEA;
     padding: 35px 20px 50px 20px;
