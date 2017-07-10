@@ -62,6 +62,7 @@
             <div class="paginator">
                 {{ $indexPosts->links('vendor.pagination.default') }}
             </div>
+            @include('component.footerbar')
         </div>
     </body>
 </html>
