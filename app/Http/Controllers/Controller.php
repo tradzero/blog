@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Post;
 use Cache;
+use Auth;
 
 class Controller extends BaseController
 {
@@ -25,7 +26,16 @@ class Controller extends BaseController
 
     protected function postCache($postId)
     {
-        $post = Post::exist()->with('tags', 'user', 'comments.user')->findOrFail($postId);
+        $userId = Auth::id();
+
+        $post = Post::exist()
+            ->with('tags', 'user', 'comments.user')
+            ->where('visible', 0)
+            ->when($userId, function ($query) use ($userId) {
+                return $query->where('visible', 1)
+                    ->orWhere(['visible' => 2, 'user_id' => $userId]);
+            })
+            ->findOrFail($postId);
         $post->content = app('parsedown')->text($post['content']);
         return $post->toArray();
     }

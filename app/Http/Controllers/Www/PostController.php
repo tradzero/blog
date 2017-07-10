@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Www;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 use Cache;
 use Log;
 use App\Post;
@@ -14,7 +15,18 @@ class PostController extends Controller
 {
     public function index()
     {
-        $indexPosts = Post::exist()->with('user')->orderBy('created_at', 'desc')->paginate(5);
+        $userId = Auth::id();
+
+        $indexPosts = Post::exist()
+            ->with('user')
+            ->where('visible', 0)
+            ->when($userId, function ($query) use ($userId) {
+                return $query->where('visible', 1)
+                    ->orWhere(['visible' => 2, 'user_id' => $userId]);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+        
         $indexPosts->each(function ($post) {
             $post->content = strip_tags($post->content);
             $post->content = str_limit($post->content, config('blog.preview_length'));
