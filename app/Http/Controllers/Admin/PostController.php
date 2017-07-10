@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Tag;
+use App\Events\PostUpdated;
 use Auth;
 
 class PostController extends Controller
@@ -54,6 +55,9 @@ class PostController extends Controller
         $post->visible = $request->visible;
         
         $post->save();
+
+        event(new PostUpdated($post->id));
+
         return redirect('/admin/posts');
     }
 
@@ -62,6 +66,9 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->is_deleted = 1;
         $post->save();
+
+        event(new PostUpdated($post->id));
+
         return redirect('/admin/posts')->with('success', '删除成功');
     }
 
@@ -70,6 +77,9 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->is_deleted = 0;
         $post->save();
+
+        event(new PostUpdated($post->id));
+        
         return redirect('/admin/posts')->with('success', '恢复成功');
     }
 }

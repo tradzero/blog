@@ -8,6 +8,7 @@ use Cache;
 use Log;
 use App\Post;
 use App\Events\ViewEvent;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
 {
@@ -44,6 +45,11 @@ class PostController extends Controller
             return $this->postCache($id);
         });
         
+        // 添加对被删除的文章的过滤
+        if ($post['is_deleted']) {
+            throw new NotFoundHttpException;
+        }
+
         event(new ViewEvent($post['id']));
         
         return view('post', compact('post'));
