@@ -82,7 +82,7 @@
                 <p class="text-left"><button @click.prevent="submit()" style="margin-top: 1%" class="btn btn-primary btn-block" type="submit">提交</button></p>
             </form>
         </div>
-        @include('component.footerbar')
+        {{-- @include('component.footerbar') --}}
     </div>
 <!-- highlight -->
 @include('component.highlight')

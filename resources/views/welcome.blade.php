@@ -17,52 +17,53 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @include('component.loginbar')
-            <div class="header">
-                <div class="title">
-                    Zero的胡言乱语
-                </div>
-                <div class="subtitle m-b-md">
-                    recoding, learning
-                </div>
-                <div class="navi">
-                    <a target="_blank" href="http://www.weibo.com/u/2681234077/">weibo</a>
-                    <a target="_blank" href="mailto:admin@drakframe.com">E-MAIL</a>
-                    <a target="_blank" href="https://laravel.com/">Laravel</a>
-                </div>
-            </div>
-
-            @foreach($indexPosts as $post)
-            <div class="article">
-                 <div>
-                    <div class="content content-title m-b-md"><a href="/post/{{$post->id}}">{{ $post->title }}</a></div>
-                    <div class="wysiwyg">
-                        <div>
-                            {!! $post->content !!}
-                        </div>
+            <div class="wrap">
+                @include('component.loginbar')
+                <div class="header">
+                    <div class="title">
+                        Zero的胡言乱语
+                    </div>
+                    <div class="subtitle m-b-md">
+                        recoding, learning
+                    </div>
+                    <div class="navi">
+                        <a target="_blank" href="http://www.weibo.com/u/2681234077/">weibo</a>
+                        <a target="_blank" href="mailto:admin@drakframe.com">E-MAIL</a>
+                        <a target="_blank" href="https://laravel.com/">Laravel</a>
                     </div>
                 </div>
-                <div class="article-footer">
-                    <p>
-                         <span>
-                            <i class="fa fa-calendar"></i>
-                            {{ $post->created_at }} 发表于 {{ (new Carbon($post->created_at))->diffForHumans() }}
-                        </span>
-                         <span><i class="fa fa-user"></i> <a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a></span>
-                         <span>
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true">{{ $post->like }}</i> 
-                            <i class="fa fa-thumbs-o-down" aria-hidden="true">{{ $post->unlike }}</i>
-                         </span>
-                         <span><i class="fa fa-eye" aria-hidden="true"></i>已有{{ null != Redis::zscore('postViewCount', 'post:' . $post->id) ?
-                                                                                  Redis::zscore('postViewCount', 'post:' . $post->id) : '0' }}次查看</span>
-                    </p>
+                @foreach($indexPosts as $post)
+                <div class="article">
+                    <div>
+                        <div class="content content-title m-b-md"><a href="/post/{{$post->id}}">{{ $post->title }}</a></div>
+                        <div class="wysiwyg">
+                            <div>
+                                {!! $post->content !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-footer">
+                        <p>
+                            <span>
+                                <i class="fa fa-calendar"></i>
+                                {{ $post->created_at }} 发表于 {{ (new Carbon($post->created_at))->diffForHumans() }}
+                            </span>
+                            <span><i class="fa fa-user"></i> <a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a></span>
+                            <span>
+                                <i class="fa fa-thumbs-o-up" aria-hidden="true">{{ $post->like }}</i> 
+                                <i class="fa fa-thumbs-o-down" aria-hidden="true">{{ $post->unlike }}</i>
+                            </span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i>已有{{ null != Redis::zscore('postViewCount', 'post:' . $post->id) ?
+                                                                                    Redis::zscore('postViewCount', 'post:' . $post->id) : '0' }}次查看</span>
+                        </p>
+                    </div>
+                </div>
+                @endforeach
+                <div class="paginator">
+                    {{ $indexPosts->links('vendor.pagination.default') }}
                 </div>
             </div>
-            @endforeach
-            <div class="paginator">
-                {{ $indexPosts->links('vendor.pagination.default') }}
-            </div>
-            @include('component.footerbar')
+            {{-- @include('component.footerbar') --}}
         </div>
     </body>
 </html>
