@@ -9,9 +9,13 @@
     <style>
         @import url('../../../css/Source Sans Pro.css');
         body {
+            background-image: url('../../../img/background.jpg');
+            background-size: cover;
+            background-repeat: space;
             margin: 0;
             padding: 0;
             font-family: -apple-system, system-ui, 'Source Sans Pro', "Microsoft YaHei", sans-serif;
+            color: #AFD9CB;
         }
         div.infomation {
             position: absolute;
@@ -22,6 +26,10 @@
         }
         h2 {
             font-weight: normal;
+        }
+        a {
+            color: #118094;
+            text-decoration: none;
         }
     </style>
 </head>
