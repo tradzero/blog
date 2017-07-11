@@ -12,16 +12,17 @@
 */
 
 Route::get('/', 'Www\PostController@index');
-Route::get('/error', function () {
-    abort(500);
-});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
 
 Route::get('/post/{id}', 'Www\PostController@show')->name('post.show');
-Auth::routes();
-Route::get('/home', 'HomeController@index');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/comment/{id}', 'Www\CommentController@store');
 });
+
 Route::get('/tag/{id}', 'Www\TagController@show');
 Route::patch('/post/{id}/like', 'Www\PostController@like');
 Route::patch('/comment/{id}/like', 'Www\CommentController@like');
@@ -43,4 +44,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
 Route::group(['prefix' => 'api', 'middleware' => ['auth', 'admin'], 'namespace' => 'Api'], function () {
     Route::resource('tag', 'TagController');
 });
-
