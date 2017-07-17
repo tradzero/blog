@@ -91,11 +91,11 @@
                     </div>
                 </div>
             @endforeach
-            <div class="paginator">
-                {{ $posts->render('vendor.pagination.default') }}
-            </div>
-            @include('component.footerbar')
         </div>
+        <div class="paginator">
+            {{ $posts->render('vendor.pagination.default') }}
+        </div>
+        @include('component.footerbar')
     </div>
 </body>
 </html>
