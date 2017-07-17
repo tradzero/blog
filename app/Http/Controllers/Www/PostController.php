@@ -19,13 +19,8 @@ class PostController extends Controller
 
         $indexPosts = Post::exist()
             ->with('user')
-            ->where('visible', 0)
-            ->when($userId, function ($query) use ($userId) {
-                return $query->where('visible', 1)
-                    ->orWhere(['visible' => 2, 'user_id' => $userId]);
-            })
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->paginate(config('blog.display_item'));
         
         $indexPosts->each(function ($post) {
             $post->content = strip_tags($post->content);

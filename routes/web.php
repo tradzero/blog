@@ -19,6 +19,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/post/{id}', 'Www\PostController@show')->name('post.show');
 
+Route::get('/users/{id}', 'Www\UsersController@show')->name('users.show');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/comment/{id}', 'Www\CommentController@store');
 });

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Post extends Model
 {
@@ -22,6 +23,12 @@ class Post extends Model
 
     public function scopeExist()
     {
-        return $this->where('is_deleted', 0);
+        $userId = Auth::id();
+        return $this->where('is_deleted', 0)
+        ->when($userId, function ($query) use ($userId) {
+            return $query->where('visible', 0)
+                ->orWhere('visible', 1)
+                ->orWhere(['visible' => 2, 'user_id' => $userId]);
+        });
     }
 }

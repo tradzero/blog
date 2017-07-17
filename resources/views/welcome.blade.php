@@ -48,7 +48,7 @@
                                 <i class="fa fa-calendar"></i>
                                 {{ $post->created_at }} 发表于 {{ (new Carbon($post->created_at))->diffForHumans() }}
                             </span>
-                            <span><i class="fa fa-user"></i> <a href="/user/{{ $post->user->id }}">{{ $post->user->nickname }}</a></span>
+                            <span><i class="fa fa-user"></i> <a href="/users/{{ $post->user->id }}">{{ $post->user->nickname }}</a></span>
                             <span>
                                 <i class="fa fa-thumbs-o-up" aria-hidden="true">{{ $post->like }}</i> 
                                 <i class="fa fa-thumbs-o-down" aria-hidden="true">{{ $post->unlike }}</i>
