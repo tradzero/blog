@@ -52,6 +52,11 @@ return [
             'prefix' => '',
         ],
 
+        'testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
