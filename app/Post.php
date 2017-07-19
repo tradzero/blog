@@ -25,10 +25,12 @@ class Post extends Model
     {
         $userId = Auth::id();
         return $this->where('is_deleted', 0)
-        ->when($userId, function ($query) use ($userId) {
-            return $query->where('visible', 0)
-                ->orWhere('visible', 1)
-                ->orWhere(['visible' => 2, 'user_id' => $userId]);
+        ->where(function ($query) use ($userId) {
+            return $query->orWhere('visible', 0)
+                    ->when($userId, function ($query) use ($userId) {
+                        return $query->orWhere('visible', 1)
+                        ->orWhere(['visible' => 2, 'user_id' => $userId]);
+                    });
         });
     }
 }
