@@ -13,7 +13,7 @@
         <link href="/css/front.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/welcome.css">
         <!-- Script -->
-        <script src="/js/jquery-3.1.1.js"></script>
+        <script src="/js/jquery.min.js"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">

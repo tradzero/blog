@@ -15,7 +15,7 @@
         <link href="//cdn.bootcss.com/rainbow/1.2.0/themes/github.min.css" rel="stylesheet">
         
         <!-- Script -->
-        <script src="/js/jquery-3.1.1.js"></script>
+        <script src="/js/jquery.min.js"></script>
         <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="//cdn.bootcss.com/vue/2.1.4/vue.js"></script>
 
