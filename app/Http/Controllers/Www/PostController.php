@@ -53,12 +53,27 @@ class PostController extends Controller
         });
         
         // 添加对被删除的文章的过滤
-        if ($post['is_deleted']) {
+        if ($post['is_deleted'] || !$this->checkVisible($post)) {
             throw new NotFoundHttpException;
         }
 
         event(new ViewEvent($post['id']));
         
         return view('post', compact('post'));
+    }
+
+    protected function checkVisible($post)
+    {
+        $userId = Auth::id();
+        $postVisible = $post['visible'];
+
+        // 当postVisible 为1 时检查用户是否登录 为2时 检查用户id是否与发帖id相等
+        if ($postVisible) {
+            return $postVisible == 2 ?
+                $post['user_id'] == $userId :
+                (Boolean)$userId;
+        } else {
+            return true;
+        }
     }
 }
