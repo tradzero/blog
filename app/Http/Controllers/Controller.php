@@ -30,11 +30,7 @@ class Controller extends BaseController
 
         $post = Post::exist()
             ->with('tags', 'user', 'comments.user')
-            ->where('visible', 0)
-            ->when($userId, function ($query) use ($userId) {
-                return $query->where('visible', 1)
-                    ->orWhere(['visible' => 2, 'user_id' => $userId]);
-            })
+            ->exist()
             ->findOrFail($postId);
         $post->content = app('parsedown')->text($post['content']);
         return $post->toArray();
