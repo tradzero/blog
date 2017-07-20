@@ -26,8 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/tag/{id}', 'Www\TagController@show');
-Route::patch('/post/{id}/like', 'Www\PostController@like');
-Route::patch('/comment/{id}/like', 'Www\CommentController@like');
+Route::patch('/post/{id}/like', 'Www\PostController@like')->name('post.like');
+Route::patch('/comment/{id}/like', 'Www\CommentController@like')->name('comment.like');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Admin'], function () {
     Route::get('/', 'HomeController@index');
