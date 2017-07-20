@@ -24,13 +24,17 @@ class Post extends Model
     public function scopeExist()
     {
         $userId = Auth::id();
-        return $this->where('is_deleted', 0)
-        ->where(function ($query) use ($userId) {
+
+        $filterDeleted = $this->where('is_deleted', 0);
+
+        $filterVisible = $filterDeleted->where(function ($query) use ($userId) {
             return $query->orWhere('visible', 0)
                     ->when($userId, function ($query) use ($userId) {
                         return $query->orWhere('visible', 1)
                         ->orWhere(['visible' => 2, 'user_id' => $userId]);
                     });
         });
+        
+        return $filterVisible;
     }
 }
