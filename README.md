@@ -125,10 +125,10 @@ This blog is licensed under the [GNU General Public License v3.0](http://www.gnu
 - [x] 将缓存的redis配置为独立频道 避免 cache:clear时移除错误数据  
 - [x] 隐藏功能实现有问题 列表隐藏了 url访问还能访问  
 - [x] 修复发布文章后 因cache问题导致文章可见性失效的问题  
-- [] 完全覆盖的测试用例  
-- [] 个人信息定制化  
-- [] 用户信息页完善  
-- [] 首页二级缓存  
+- [ ] 完全覆盖的测试用例  
+- [ ] 个人信息定制化  
+- [ ] 用户信息页完善  
+- [ ] 首页二级缓存  
 
 # 贡献
 欢迎提issue~ 欢迎star  任何的意见，问题可以发email或者任何渠道联系我
