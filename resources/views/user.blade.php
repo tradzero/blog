@@ -47,7 +47,7 @@
             @include('component.loginbar')
             <div class="header">
                 <div class="title">
-                    Zero的胡言乱语
+                    {{ config('app.name') }}
                 </div>
                 <div class="subtitle m-b-md">
                     recoding, learning

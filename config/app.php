@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Zero的胡言乱语',
+    'name' => env('APP_NAME', 'Zero的胡言乱语'),
 
     /*
     |--------------------------------------------------------------------------

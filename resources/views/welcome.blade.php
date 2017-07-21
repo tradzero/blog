@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>Zero的胡言乱语</title>
+        <title>{{ config('app.name') }}</title>
 
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
@@ -21,7 +21,7 @@
                 @include('component.loginbar')
                 <div class="header">
                     <div class="title">
-                        Zero的胡言乱语
+                        {{ config('app.name') }}
                     </div>
                     <div class="subtitle m-b-md">
                         recoding, learning
