@@ -82,6 +82,8 @@ http://yourdomain/admin 进入后台 具体账号可以使用 `php artisan accou
 上述模板参考：  
 `{{first.DATA}} 异常类型：{{keyword1.DATA}} 异常链接：{{keyword2.DATA}} 访问IP：{{keyword3.DATA}} 错误堆栈：{{error.DATA}} {{remark.DATA}}`
 
+3. 发文章同步到wordpress
+
 # 依赖
 
 ## [Laravel](https://laravel.com/)  
@@ -116,6 +118,9 @@ markdown github风格css组件
 ## [bootstrap](http://getbootstrap.com/)
 前端框架
 
+## [WPREST](https://github.com/tradzero/WPREST)
+wordpress 文章同步工具
+
 # License
 
 This blog is licensed under the [GNU General Public License v3.0](http://www.gnu.org/licenses/gpl-3.0.html)
@@ -129,6 +134,7 @@ This blog is licensed under the [GNU General Public License v3.0](http://www.gnu
 - [ ] 个人信息定制化  
 - [ ] 用户信息页完善  
 - [ ] 首页二级缓存  
+- [ ] 使用队列处理wordpress同步工具 避免发文章过于缓慢
 
 # 贡献
 欢迎提issue~ 欢迎star  任何的意见，问题可以发email或者任何渠道联系我
