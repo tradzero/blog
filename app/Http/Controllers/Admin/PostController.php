@@ -8,6 +8,7 @@ use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Tag;
 use App\Events\PostUpdated;
+use App\Events\PostCreated;
 use Auth;
 
 class PostController extends Controller
@@ -28,15 +29,20 @@ class PostController extends Controller
     {
         $tagIds = $request->get('tags', []);
         $tags = Tag::whereIn('id', $tagIds)->get();
-
+        
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
         $post->visible = $request->visible;
+
         Auth::user()->posts()->save($post);
+        
         if ($tags) {
-            $post->tags()->sync($tagIds);
+            $post->tags()->attach($tagIds);
         }
+
+        event(new PostCreated($post));
+        
         return redirect('/admin/posts');
     }
     

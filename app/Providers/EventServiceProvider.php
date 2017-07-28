@@ -18,7 +18,12 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         'App\Events\PostUpdated' => [
-            'App\Listeners\UpdatePostCacheListener'
+            'App\Listeners\UpdatePostCacheListener',
+        ],
+
+        'App\Events\PostCreated' => [
+            'App\Listeners\CreatePostCacheListener',
+
         ],
     ];
 

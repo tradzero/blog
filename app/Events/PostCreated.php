@@ -8,19 +8,20 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Post;
 
-class PostUpdated
+class PostCreated
 {
     use InteractsWithSockets, SerializesModels;
 
-    public $postId;
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct($postId)
+    public $post;
+
+    public function __construct(Post $post)
     {
-        $this->postId = $postId;
+        $post = Post::find($post->id);
+        
+        $post->load('tags', 'user', 'comments.user');
+
+        $this->post = $post;
     }
 }
