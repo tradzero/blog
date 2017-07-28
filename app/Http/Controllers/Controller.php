@@ -30,9 +30,10 @@ class Controller extends BaseController
 
         $post = Post::exist()
             ->with('tags', 'user', 'comments.user')
-            ->exist()
             ->findOrFail($postId);
+        
         $post->content = app('parsedown')->text($post['content']);
+        
         return $post->toArray();
     }
 
