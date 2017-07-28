@@ -18,7 +18,7 @@ class SyncToWordpressListener
 
     public function handle(PostCreated $event)
     {
-        if (env('sync_wordpress')) {
+        if (config('services.wordpress.sync_wordpress')) {
             $this->syncToWordpress($event);
         }
     }

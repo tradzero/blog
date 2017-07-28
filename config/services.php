@@ -42,4 +42,7 @@ return [
         'url' => env('QINIU_URL', ''),
     ],
 
+    'wordpress' => [
+        'sync_wordpress' => env('sync_wordpress'),
+    ]
 ];
