@@ -14,7 +14,8 @@
         "laracasts/flash": "^2.0",
         "qiniu/php-sdk": "^7.1",
         "erusev/parsedown": "^1.6",
-        "overtrue/laravel-wechat": "~3.0"
+        "overtrue/laravel-wechat": "~3.0",
+        "tradzero/wp_rest_laravel": "^0.02.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

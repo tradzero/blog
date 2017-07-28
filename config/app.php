@@ -179,6 +179,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         YuanChao\Editor\EndaEditorServiceProvider::class,
+        Tradzero\WPREST\WPRESTServiceProvider::class,
     ],
 
     /*
@@ -232,6 +233,7 @@ return [
          */
         'Carbon' => \Carbon\Carbon::class,
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
+        'WPREST' => Tradzero\WPREST\Facade::class,
     ],
 
 ];

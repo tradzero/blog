@@ -23,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\PostCreated' => [
             'App\Listeners\CreatePostCacheListener',
-
+            'App\Listeners\SyncToWordpressListener',
         ],
     ];
 
