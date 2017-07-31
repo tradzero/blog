@@ -15,10 +15,11 @@ http://yourdomain/admin 进入后台 具体账号可以使用 `php artisan accou
 `{{first.DATA}} 异常类型：{{keyword1.DATA}} 异常链接：{{keyword2.DATA}} 访问IP：{{keyword3.DATA}} 错误堆栈：{{error.DATA}} {{remark.DATA}}`
 
 3. 发文章同步到wordpress
-使用说明：  
-1. 更改.env的sync_wordpress为true。
-2. 运行 `php artisan vendor:publish --provider=Tradzero\WPREST\WPRESTServiceProvider`
-3. 更改`config/wordpress.php` 设置wordpress站点endpoint与用户名信息
+
+> 使用说明：  
+> 1. 更改.env的sync_wordpress为true。
+> 2. 运行 `php artisan vendor:publish --provider=Tradzero\WPREST\WPRESTServiceProvider`
+> 3. 更改`config/wordpress.php` 设置wordpress站点endpoint与用户名信息
 
 # 安装
 
