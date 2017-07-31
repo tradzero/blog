@@ -1,7 +1,9 @@
 <div class="footer-bar">
     <ul class="link">
         <li>
-            <a href="//www.drakframe.com">WordPress主站</a>
+            @foreach(config('blog.footer_urls') as $name => $url)
+                <a href="{{ $url }}">{{ $name }}</a>
+            @endforeach
         </li>
     </ul>
     <p class="description">

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>{{ config('app.name') }}</title>
+        <title>{{ config('blog.name') }}</title>
 
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
@@ -21,15 +21,15 @@
                 @include('component.loginbar')
                 <div class="header">
                     <div class="title">
-                        {{ config('app.name') }}
+                        {{ config('blog.name') }}
                     </div>
                     <div class="subtitle m-b-md">
-                        recoding, learning
+                        {{ config('blog.second_title') }}
                     </div>
                     <div class="navi">
-                        <a target="_blank" href="http://www.weibo.com/u/2681234077/">weibo</a>
-                        <a target="_blank" href="mailto:admin@drakframe.com">E-MAIL</a>
-                        <a target="_blank" href="https://laravel.com/">Laravel</a>
+                        @foreach(config('blog.urls') as $name => $url)
+                            <a href="{{ $url }}">{{ $name }}</a>
+                        @endforeach
                     </div>
                 </div>
                 @foreach($indexPosts as $post)
