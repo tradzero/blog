@@ -1,3 +1,22 @@
+
+# Feature
+
+1. backend  
+http://yourdomain/admin backend url you can use `php artisan account:admin` to create your admin account.
+
+2. error wechat notice  
+This feature implement by [easywechat](https://easywechat.org/)  
+automatic report and notice from wechat when error throwed  
+![example](../imgs/wechat_report.png)  
+template for reference：  
+`{{first.DATA}} error type：{{keyword1.DATA}} error url：{{keyword2.DATA}} IP Address：{{keyword3.DATA}} error traces：{{error.DATA}} {{remark.DATA}}`
+
+3. sync post to wordpress  
+how to use: 
+1. modify `.env` file, set sync_wordpress `true`. 
+2. run `php artisan vendor:publish --provider=Tradzero\WPREST\WPRESTServiceProvider`
+3. modify `config/wordpress.php` set wordpress endpoint and account info.
+
 # Install
 
 ## Require
@@ -64,19 +83,10 @@ WECHAT_AES_KEY=      # wechat aes_key(option)
 WECHAT_USER_OPENID=  # wechat user OPENID for receive wechat notice
 WECHAT_TEMPLATE=     # wechat notice feature template id
 WECHAT_DEBUG=        # enable wechat debug notice, default false
+
+# sync post to wordpress
+sync_wordpress= # enable sync post to wordpress
 ```
-
-# Feature
-
-1. backend  
-http://yourdomain/admin backend url you can use `php artisan account:admin` to create your admin account.
-
-2. error wechat notice  
-This feature implement by [easywechat](https://easywechat.org/)  
-automatic report and notice from wechat when error throwed  
-![example](../imgs/wechat_report.png)  
-template for reference：  
-`{{first.DATA}} error type：{{keyword1.DATA}} error url：{{keyword2.DATA}} IP Address：{{keyword3.DATA}} error traces：{{error.DATA}} {{remark.DATA}}`
 
 # Dependence
 
@@ -112,6 +122,8 @@ markdown github style css component
 ## [bootstrap](http://getbootstrap.com/)
 frontend ui framework
 
+## [WPREST](https://github.com/tradzero/WPREST)
+wordpress post sync tools
 # License
 
 This blog is licensed under the [GNU General Public License v3.0](http://www.gnu.org/licenses/gpl-3.0.html)

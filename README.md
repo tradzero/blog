@@ -3,6 +3,23 @@
 
 ## <a href="docs/english.md">English Version</a>
 
+# 功能
+1. 后台部分  
+http://yourdomain/admin 进入后台 具体账号可以使用 `php artisan account:admin` 生成
+
+2. 错误事件微信推送功能  
+本功能由[easywechat](https://easywechat.org/)实现  
+当异常发生时 自动上报错误  
+![example](imgs/wechat_report.png)  
+上述模板参考：  
+`{{first.DATA}} 异常类型：{{keyword1.DATA}} 异常链接：{{keyword2.DATA}} 访问IP：{{keyword3.DATA}} 错误堆栈：{{error.DATA}} {{remark.DATA}}`
+
+3. 发文章同步到wordpress
+使用说明：  
+1. 更改.env的sync_wordpress为true。
+2. 运行 `php artisan vendor:publish --provider=Tradzero\WPREST\WPRESTServiceProvider`
+3. 更改`config/wordpress.php` 设置wordpress站点endpoint与用户名信息
+
 # 安装
 
 ## 需求
@@ -69,20 +86,13 @@ WECHAT_AES_KEY=      # 微信公众平台  开发  服务器配置  消息加解
 WECHAT_USER_OPENID=  # 微信公众平台  测试号二维码  用户列表 用户OPENID 用来接收消息
 WECHAT_TEMPLATE=     # 微信公众平台  模板消息接口  测试模板ID
 WECHAT_DEBUG=        # 是否开启微信推送功能 默认为false
+
+# 同步文章到wordpress
+sync_wordpress= # 是否开启文章推送到wordpress
 ```
 
-# 功能
-1. 后台部分  
-http://yourdomain/admin 进入后台 具体账号可以使用 `php artisan account:admin` 生成
 
-2. 错误事件微信推送功能  
-本功能由[easywechat](https://easywechat.org/)实现  
-当异常发生时 自动上报错误  
-![example](imgs/wechat_report.png)  
-上述模板参考：  
-`{{first.DATA}} 异常类型：{{keyword1.DATA}} 异常链接：{{keyword2.DATA}} 访问IP：{{keyword3.DATA}} 错误堆栈：{{error.DATA}} {{remark.DATA}}`
 
-3. 发文章同步到wordpress
 
 # 依赖
 
