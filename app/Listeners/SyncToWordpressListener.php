@@ -9,7 +9,7 @@ use Tradzero\WPREST\Resources\Post as WPost;
 use Tradzero\WPREST\Resources\Category as WCategory;
 use WPREST;
 
-class SyncToWordpressListener
+class SyncToWordpressListener implements ShouldQueue
 {
     public function __construct()
     {
