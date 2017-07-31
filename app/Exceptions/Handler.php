@@ -33,8 +33,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        $userId = env('WECHAT_USER_OPENID');
-        $templateId = env('WECHAT_TEMPLATE');
+        $userId = config('blog.wechat.user_openid');
+        $templateId = config('blog.wechat.template');
+
         $data = [
             'first' => '系统异常',
             'keyword1' => get_class($exception),
@@ -43,9 +44,11 @@ class Handler extends ExceptionHandler
             'error' => $exception->getMessage(),
             'remark' => '请及时处理'
         ];
+        
         if (config('wechat.debug')) {
             EasyWeChat::notice()->to($userId)->uses($templateId)->data($data)->send();
         }
+
         parent::report($exception);
     }
 

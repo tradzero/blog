@@ -31,4 +31,9 @@ return [
     'preview_length' => '500',
     // 文章一页展示多少条
     'display_item' => '5',
+
+    'wechat' => [
+        'user_openid' => env('WECHAT_USER_OPENID'),
+        'template' => env('WECHAT_TEMPLATE'),
+    ],
 ];
