@@ -11,18 +11,15 @@
             <form action="{{ URL::route('posts.store') }}" method="POST">
                 <div class="col-md-9">
                     {{ csrf_field() }}
+                    @if(count($errors))
+                        @include('admin.component.alert-danger', ['errors' => $errors ])
+                    @endif
                     <div class="form-group">
-                        @if($errors->has('title'))
-                            @include('admin.component.alert-danger', [ 'errors' => $errors->first('title') ])
-                        @endif
                         <input class="form-control" name="title" type="text" placeholder="在此输入标题" value="{{ old('title') }}">
                     </div>
 
                     <div class="form-group">
                         <div class="editor">
-                            @if($errors->has('content'))
-                                @include('admin.component.alert-danger', [ 'errors' => $errors->first('content') ])
-                            @endif
                             <textarea name="content" class="form-control" id="myEditor"></textarea>
                         </div>
                     </div>
