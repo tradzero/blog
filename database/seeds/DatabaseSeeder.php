@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
             'role'     => 0,
         ]);
         factory(App\User::class)->times(9)->create();
+        factory(App\Tag::class)->times(5)->create();
         factory(App\Post::class)->times(10)->create()->each(function ($post) use ($faker) {
             $post->tags()->sync(
                 // 随机为文章添加标签
                 $faker->randomElements(range(1, 5), $count = rand(1, 3))
             );
         });
-        factory(App\Tag::class)->times(5)->create();
         factory(App\Comment::class)->times(20)->create();
     }
     
