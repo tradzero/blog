@@ -4,7 +4,7 @@ return [
     /**
      * 博客站点名
      */
-    'name' => config('app.name'),
+    'name' => env('APP_NAME'),
 
     /**
      * 博客次标题
