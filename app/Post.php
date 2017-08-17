@@ -29,10 +29,15 @@ class Post extends Model
 
         $filterVisible = $filterDeleted->where(function ($query) use ($userId) {
             return $query->orWhere('visible', 0)
-                    ->when($userId, function ($query) use ($userId) {
-                        return $query->orWhere('visible', 1)
-                        ->orWhere(['visible' => 2, 'user_id' => $userId]);
-                    });
+                // 当用户id存在时 去查找特殊可见性文章
+                ->when($userId, function ($query) use ($userId) {
+                    return $query->orWhere('visible', 1)
+                                 // 当visible = 2时 只有用户id为自身可以看到
+                                 ->orWhere(function ($query) use ($userId) {
+                                     $query->where('visible', 2)
+                                           ->where('user_id', $userId);
+                                 });
+                });
         });
         
         return $filterVisible;

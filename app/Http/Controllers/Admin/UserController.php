@@ -28,12 +28,12 @@ class UserController extends Controller
         $user = User::create($userData);
         $user->role = $request->get('role', 2);
         $user->save();
-        if ($user) {
+        if (config('blog.mail.enable')) {
             Mail::to($user->mail)->send(
                 new RegisterByInvite($user->username, $user->nickname, $request->get('password'))
             );
-            return redirect()->route('users.index')->with('success', '创建成功');
         }
+        return redirect()->route('users.index')->with('success', '创建成功');
     }
 
     public function show($id)

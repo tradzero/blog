@@ -28,7 +28,7 @@ class PostTest extends TestCase
 
         // 测试访问该文章 预期 返回404
         $this->get(route('post.show', $post->id))
-             ->assertResponseStatus(404);
+             ->assertStatus(404);
     }
 
     // 测试登录可见文章是否有效
@@ -41,7 +41,7 @@ class PostTest extends TestCase
         $NotLoginedResult = $NotLoginedPosts->contains($AuthRequiredPost);
         $this->assertFalse($NotLoginedResult);
         $this->get(route('post.show', $AuthRequiredPost->id))
-             ->assertResponseStatus(404);
+             ->assertStatus(404);
 
         // 测试登录后 预期 返回的结果包含该文章
         $this->actingAs($this->getAuthenicatedUser());
@@ -49,7 +49,7 @@ class PostTest extends TestCase
         $LoginedResult = $LoginedPosts->contains($AuthRequiredPost);
         $this->assertTrue($LoginedResult);
         $this->get(route('post.show', $AuthRequiredPost->id))
-             ->assertResponseStatus(200);
+             ->assertStatus(200);
     }
 
     public function testSelfSeeingPosts()
@@ -60,20 +60,20 @@ class PostTest extends TestCase
         // 测试未登录用户无权查看
         $this->assertFalse(Post::exist()->get()->contains($post));
         $this->get(route('post.show', $post->id))
-             ->assertResponseStatus(404);
+             ->assertStatus(404);
         
         // 测试其他用户无权查看私密文章
         $other = $this->getAuthenicatedUser();
         $this->actingAs($other);
         $this->assertFalse(Post::exist()->get()->contains($post));
         $this->get(route('post.show', $post->id))
-             ->assertResponseStatus(404);
+             ->assertStatus(404);
         
         // 自己可以查看文章
         $this->actingAs($self);
         $this->assertTrue(Post::exist()->get()->contains($post));
         $this->get(route('post.show', $post->id))
-             ->assertResponseStatus(200);
+             ->assertStatus(200);
     }
 
     public function testLike()

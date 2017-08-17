@@ -36,4 +36,8 @@ return [
         'user_openid' => env('WECHAT_USER_OPENID'),
         'template' => env('WECHAT_TEMPLATE'),
     ],
+
+    'mail' => [
+        'enable' => false,
+    ]
 ];
