@@ -168,6 +168,9 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
+        YuanChao\Editor\EndaEditorServiceProvider::class,
+        Tradzero\WPREST\WPRESTServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         //
 
         /*
@@ -178,8 +181,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        YuanChao\Editor\EndaEditorServiceProvider::class,
-        Tradzero\WPREST\WPRESTServiceProvider::class,
     ],
 
     /*
