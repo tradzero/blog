@@ -91,7 +91,7 @@ sync_wordpress= # enable sync post to wordpress
 # Dependence
 
 ## [Laravel](https://laravel.com/)  
-version: 5.3
+version: 5.4
 
 ## [laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
 

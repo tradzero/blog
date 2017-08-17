@@ -96,7 +96,7 @@ sync_wordpress= # 是否开启文章推送到wordpress
 # 依赖
 
 ## [Laravel](https://laravel.com/)  
-版本：5.3
+版本：5.4
 
 ## [laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
 
