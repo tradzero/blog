@@ -11,6 +11,8 @@ class CommentController extends Controller
 {
     public function index()
     {
+        $this->authorize(Comment::class);
+        
         $comments = Comment::with('user', 'post')->paginate();
         return view('admin.comments.index', compact('comments'));
     }
@@ -18,12 +20,18 @@ class CommentController extends Controller
     public function show($id)
     {
         $comment = Comment::with('user', 'post')->findOrFail($id);
+
+        $this->authorize($comment);
+
         return view('admin.comments.show', compact('comment'));
     }
 
     public function pass($id)
     {
         $comment = Comment::findOrFail($id);
+
+        $this->authorize($comment);
+
         $comment->is_deleted = 0;
         $comment->save();
         return Response::json(['data' => 'pass'], 200);
@@ -32,6 +40,9 @@ class CommentController extends Controller
     public function deny($id)
     {
         $comment = Comment::findOrFail($id);
+
+        $this->authorize('pass', $comment);
+        
         $comment->is_deleted = 1;
         $comment->save();
         return Response::json(['data' => 'deny'], 200);

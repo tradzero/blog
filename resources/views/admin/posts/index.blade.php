@@ -46,17 +46,21 @@
                                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                                     <td>
                                         @if(!$post->is_deleted)
-                                            <form action="{{ URL::route('posts.destroy', $post->id) }}" method="POST">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                                <button type="button" onclick="deleteConfirm(this.parentNode)" class="btn btn-danger">删除</button>
-                                            </form>
+                                            @can('adminDestroy', $post)
+                                                <form action="{{ URL::route('posts.destroy', $post->id) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <button type="button" onclick="deleteConfirm(this.parentNode)" class="btn btn-danger">删除</button>
+                                                </form>
+                                            @endcan
                                         @else
-                                            <form action="{{ URL::route('posts.recovery', $post->id) }}" method="POST">
-                                                {{ csrf_field() }}
-                                                {{ method_field('PATCH') }}
-                                                <button type="button" onclick="recoveryConfirm(this.parentNode)" class="btn btn-primary">恢复</button>
-                                            </form>
+                                            @can('adminRecovery', $post)
+                                                <form action="{{ URL::route('posts.recovery', $post->id) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button type="button" onclick="recoveryConfirm(this.parentNode)" class="btn btn-primary">恢复</button>
+                                                </form>
+                                            @endcan
                                         @endif
                                     </td>
                                 </tr>

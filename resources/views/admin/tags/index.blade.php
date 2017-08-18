@@ -9,9 +9,11 @@
         @endif
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <a href="{{ URL::route('tags.create') }}" class="btn btn-primary">新的分类</a>
-        </div>
+        @can('create', App\Tag::class)
+            <div class="row">
+                <a href="{{ URL::route('tags.create') }}" class="btn btn-primary">新的分类</a>
+            </div>
+        @endcan
         <div class="row">
             <div class="box">
                 <div class="box-header">
@@ -32,7 +34,9 @@
                                     <td>{{ $tag->name }}</td>
                                     <td>{{ $tag->posts_count }}</td>
                                     <td>
-                                        <a href="{{ URL::route('tags.edit', $tag->id) }}" class="btn btn-primary">修改</a>
+                                        @can('update', $tag)
+                                            <a href="{{ URL::route('tags.edit', $tag->id) }}" class="btn btn-primary">修改</a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
