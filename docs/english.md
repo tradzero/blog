@@ -20,7 +20,7 @@ how to use:
 # Install
 
 ## Require
-php > 5.6.4 (php 7 is better, php5.6 is untested)  
+php > 7
 any server, like: nginx apache (options)  
 composer  
 redis (cache posts)  
@@ -91,7 +91,7 @@ sync_wordpress= # enable sync post to wordpress
 # Dependence
 
 ## [Laravel](https://laravel.com/)  
-version: 5.4
+version: 5.5
 
 ## [laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
 

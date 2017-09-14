@@ -24,7 +24,7 @@ http://yourdomain/admin 进入后台 具体账号可以使用 `php artisan accou
 # 安装
 
 ## 需求
-php > 5.6.4 (最好是php 7 未在php5.6测试过)  
+php > 7
 任意服务器 nginx apache (可选)  
 composer  
 redis (文章缓存需要)  
@@ -96,7 +96,7 @@ sync_wordpress= # 是否开启文章推送到wordpress
 # 依赖
 
 ## [Laravel](https://laravel.com/)  
-版本：5.4
+版本：5.5
 
 ## [laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
 
