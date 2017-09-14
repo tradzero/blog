@@ -69,7 +69,7 @@ class UserController extends Controller
                 $query->orderBy('created_at', 'desc')->take(5);
             },
             'comments.post'
-        ])->withCount('comments', 'posts')->findOrFail($id);
+        ])->withCount('comments as comments_count', 'posts as posts_count')->findOrFail($id);
         return $user;
     }
 }
